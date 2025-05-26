@@ -76,9 +76,9 @@ public class Registration1 : MonoBehaviour
             return;
         }
 
-        if (password.Length < 8)
+        if (password.Length < 5)
         {
-            ShowError("Пароль должен содержать минимум 6 символов");
+            ShowError("Пароль должен содержать минимум 5 символов");
             return;
         }
 

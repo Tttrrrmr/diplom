@@ -1731,6 +1731,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5578241442243422720, guid: 64f577cb2c86cf4438feff933196bef3, type: 3}
+      propertyPath: m_CharacterLimit
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5637975533484482060, guid: 64f577cb2c86cf4438feff933196bef3, type: 3}
       propertyPath: m_Name
       value: PasswordField
