@@ -6,16 +6,12 @@ using System;
 
 public class ApiManager : MonoBehaviour
 {
-    // Базовый URL API из документации
     private const string BASE_API_URL = "https://gameapi.gd-alt.ru/api/";
 
-    // Переменные для хранения данных пользователя
     private string _accessToken;
     private int _userId;
     private string _userName;
     private string _userRole;
-
-    // Модели данных для запросов и ответов
 
     [Serializable]
     public class RegisterRequestData
@@ -36,17 +32,6 @@ public class ApiManager : MonoBehaviour
     }
 
     [Serializable]
-    public class LoginRequestData
-    {
-        public string grant_type = "password";
-        public string username;
-        public string password;
-        public string scope = "";
-        public string client_id = "unity_client";
-        public string client_secret = "secret";
-    }
-
-    [Serializable]
     public class LoginResponseData
     {
         public string token_type;
@@ -57,7 +42,7 @@ public class ApiManager : MonoBehaviour
     }
 
     [Serializable]
-    public class ProgressData
+    public class ProgressRequestData
     {
         public int object_id;
         public int scores;
@@ -73,12 +58,22 @@ public class ApiManager : MonoBehaviour
     }
 
     [Serializable]
+    public class AccountDeleteResponse
+    {
+        public string status;
+        public string message;
+        public int id;
+        public string name;
+        public int deleted_progress_records;
+    }
+
+    [Serializable]
     public class ApiErrorResponse
     {
         public string detail;
     }
 
-    // Метод регистрации
+    // Регистрация нового пользователя
     public IEnumerator Register(int levelTypeId, int roleId, int specialtyId,
                               string name, string login, string password,
                               Action<int> onSuccess, Action<string> onFailure)
@@ -95,41 +90,42 @@ public class ApiManager : MonoBehaviour
             password = password
         };
 
-        string jsonRequestBody = JsonUtility.ToJson(requestData);
+        string jsonData = JsonUtility.ToJson(requestData);
 
-        UnityWebRequest uwr = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonRequestBody);
-        uwr.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        uwr.downloadHandler = new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
-
-        yield return uwr.SendWebRequest();
-
-        if (HandleApiResponse(uwr))
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
         {
-            RegisterResponseData response = JsonUtility.FromJson<RegisterResponseData>(uwr.downloadHandler.text);
-            if (response != null && response.message == "User created successfully")
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                onSuccess?.Invoke(response.user_id);
+                RegisterResponseData response = JsonUtility.FromJson<RegisterResponseData>(request.downloadHandler.text);
+                if (response.message == "User created successfully")
+                {
+                    onSuccess?.Invoke(response.user_id);
+                }
+                else
+                {
+                    onFailure?.Invoke("Registration failed: " + response.message);
+                }
             }
             else
             {
-                onFailure?.Invoke("Ошибка регистрации: неверный формат ответа");
+                onFailure?.Invoke(GetErrorMessage(request));
             }
-        }
-        else
-        {
-            onFailure?.Invoke(ParseError(uwr));
         }
     }
 
-    // Метод авторизации
+    // Авторизация пользователя
     public IEnumerator Login(string username, string password,
                            Action<LoginResponseData> onSuccess, Action<string> onFailure)
     {
         string url = BASE_API_URL + "auth/login";
 
-        // Для URL-encoded данных используем WWWForm
         WWWForm form = new WWWForm();
         form.AddField("grant_type", "password");
         form.AddField("username", username);
@@ -138,31 +134,24 @@ public class ApiManager : MonoBehaviour
         form.AddField("client_id", "unity_client");
         form.AddField("client_secret", "secret");
 
-        UnityWebRequest uwr = UnityWebRequest.Post(url, form);
-        uwr.downloadHandler = new DownloadHandlerBuffer();
-
-        yield return uwr.SendWebRequest();
-
-        if (HandleApiResponse(uwr))
+        using (UnityWebRequest request = UnityWebRequest.Post(url, form))
         {
-            LoginResponseData response = JsonUtility.FromJson<LoginResponseData>(uwr.downloadHandler.text);
-            if (response != null && !string.IsNullOrEmpty(response.access_token))
+            request.downloadHandler = new DownloadHandlerBuffer();
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
             {
+                LoginResponseData response = JsonUtility.FromJson<LoginResponseData>(request.downloadHandler.text);
                 _accessToken = response.access_token;
                 _userId = response.user_id;
                 _userName = response.user_name;
                 _userRole = response.role;
-
                 onSuccess?.Invoke(response);
             }
             else
             {
-                onFailure?.Invoke("Ошибка авторизации: неверный формат ответа");
+                onFailure?.Invoke(GetErrorMessage(request));
             }
-        }
-        else
-        {
-            onFailure?.Invoke(ParseError(uwr));
         }
     }
 
@@ -171,26 +160,27 @@ public class ApiManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(_accessToken))
         {
-            onFailure?.Invoke("Требуется авторизация");
+            onFailure?.Invoke("Authorization required");
             yield break;
         }
 
         string url = BASE_API_URL + "progress/my";
 
-        UnityWebRequest uwr = UnityWebRequest.Get(url);
-        uwr.downloadHandler = new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Authorization", "Bearer " + _accessToken);
-
-        yield return uwr.SendWebRequest();
-
-        if (HandleApiResponse(uwr))
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
-            ProgressResponseData[] response = JsonHelper.FromJson<ProgressResponseData>(uwr.downloadHandler.text);
-            onSuccess?.Invoke(response);
-        }
-        else
-        {
-            onFailure?.Invoke(ParseError(uwr));
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Authorization", "Bearer " + _accessToken);
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                ProgressResponseData[] response = JsonHelper.FromJson<ProgressResponseData>(request.downloadHandler.text);
+                onSuccess?.Invoke(response);
+            }
+            else
+            {
+                onFailure?.Invoke(GetErrorMessage(request));
+            }
         }
     }
 
@@ -200,79 +190,90 @@ public class ApiManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(_accessToken))
         {
-            onFailure?.Invoke("Требуется авторизация");
+            onFailure?.Invoke("Authorization required");
             yield break;
         }
 
         string url = BASE_API_URL + "progress/my";
 
-        ProgressData requestData = new ProgressData
+        ProgressRequestData requestData = new ProgressRequestData
         {
             object_id = objectId,
             scores = scores
         };
 
-        string jsonRequestBody = JsonUtility.ToJson(requestData);
+        string jsonData = JsonUtility.ToJson(requestData);
 
-        UnityWebRequest uwr = new UnityWebRequest(url, UnityWebRequest.kHttpVerbPOST);
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonRequestBody);
-        uwr.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        uwr.downloadHandler = new DownloadHandlerBuffer();
-        uwr.SetRequestHeader("Content-Type", "application/json");
-        uwr.SetRequestHeader("Authorization", "Bearer " + _accessToken);
+        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        {
+            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Content-Type", "application/json");
+            request.SetRequestHeader("Authorization", "Bearer " + _accessToken);
+            yield return request.SendWebRequest();
 
-        yield return uwr.SendWebRequest();
-
-        if (HandleApiResponse(uwr))
-        {
-            ProgressResponseData response = JsonUtility.FromJson<ProgressResponseData>(uwr.downloadHandler.text);
-            onSuccess?.Invoke(response);
-        }
-        else
-        {
-            onFailure?.Invoke(ParseError(uwr));
-        }
-    }
-
-    // Обработка ответов API
-    private bool HandleApiResponse(UnityWebRequest uwr)
-    {
-        if (uwr.result == UnityWebRequest.Result.ConnectionError)
-        {
-            Debug.LogError($"Ошибка сети: {uwr.error}");
-            return false;
-        }
-        else if (uwr.result == UnityWebRequest.Result.ProtocolError)
-        {
-            Debug.LogError($"Ошибка HTTP: {uwr.responseCode}");
-            return false;
-        }
-        return true;
-    }
-
-    // Парсинг ошибок
-    private string ParseError(UnityWebRequest uwr)
-    {
-        if (!string.IsNullOrEmpty(uwr.downloadHandler.text))
-        {
-            try
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                ApiErrorResponse error = JsonUtility.FromJson<ApiErrorResponse>(uwr.downloadHandler.text);
-                if (error != null && !string.IsNullOrEmpty(error.detail))
+                ProgressResponseData response = JsonUtility.FromJson<ProgressResponseData>(request.downloadHandler.text);
+                onSuccess?.Invoke(response);
+            }
+            else
+            {
+                onFailure?.Invoke(GetErrorMessage(request));
+            }
+        }
+    }
+
+    // Удаление аккаунта
+    public IEnumerator DeleteAccount(Action<AccountDeleteResponse> onSuccess, Action<string> onFailure)
+    {
+        if (string.IsNullOrEmpty(_accessToken))
+        {
+            onFailure?.Invoke("Authorization required");
+            yield break;
+        }
+
+        string url = BASE_API_URL + "account";
+
+        using (UnityWebRequest request = UnityWebRequest.Delete(url))
+        {
+            request.downloadHandler = new DownloadHandlerBuffer();
+            request.SetRequestHeader("Authorization", "Bearer " + _accessToken);
+            yield return request.SendWebRequest();
+
+            if (request.result == UnityWebRequest.Result.Success)
+            {
+                AccountDeleteResponse response = JsonUtility.FromJson<AccountDeleteResponse>(request.downloadHandler.text);
+                if (response.status == "success")
                 {
-                    return error.detail;
+                    _accessToken = null;
+                    onSuccess?.Invoke(response);
+                }
+                else
+                {
+                    onFailure?.Invoke("Account deletion failed: " + response.message);
                 }
             }
-            catch
+            else
             {
-                // Если не удалось распарсить JSON с ошибкой
+                onFailure?.Invoke(GetErrorMessage(request));
             }
         }
-        return uwr.error ?? "Неизвестная ошибка";
+    }
+
+    private string GetErrorMessage(UnityWebRequest request)
+    {
+        if (request.responseCode == 401 && !string.IsNullOrEmpty(request.downloadHandler.text))
+        {
+            ApiErrorResponse error = JsonUtility.FromJson<ApiErrorResponse>(request.downloadHandler.text);
+            return error?.detail ?? "Invalid credentials";
+        }
+
+        return request.error ?? $"HTTP error {request.responseCode}";
     }
 }
 
-// Вспомогательный класс для десериализации массивов JSON
 public static class JsonHelper
 {
     public static T[] FromJson<T>(string json)
