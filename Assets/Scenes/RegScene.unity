@@ -2015,6 +2015,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252466499}
     m_Modifications:
+    - target: {fileID: 2204605324744966170, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407397969779996325, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407397969779996325, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407397969779996325, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407397969779996325, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4333905075537984671, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2099,6 +2119,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpesialtyDropdown
       objectReference: {fileID: 0}
+    - target: {fileID: 6264098037401754837, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6298187629041839768, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6298187629041839768, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2126,6 +2154,26 @@ PrefabInstance:
     - target: {fileID: 6298187629041839768, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732585562136606077, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732585562136606077, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.9999809
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490594470381750321, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714803331462033883, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714803331462033883, guid: 3988a78445f612246ad925514e7e9c13, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000019073486
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
