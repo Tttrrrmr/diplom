@@ -9,8 +9,7 @@ public class EnterRoomUI : MonoBehaviour
     public TextMeshProUGUI titleText;
 
     private string sceneToLoad;
-
-    public event Action OnClose;
+    private Action onClose;
 
     public void Show(string scene, string room)
     {
@@ -21,13 +20,20 @@ public class EnterRoomUI : MonoBehaviour
 
     public void OnYesClicked()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneToLoad);
     }
 
     public void OnCancelClicked()
     {
         panel.SetActive(false);
-        OnClose?.Invoke(); // оповещаем дверь
-        OnClose = null;     // очищаем старую подписку
+        onClose?.Invoke();
+        onClose = null;
+    }
+
+    public void SetOnClose(Action callback)
+    {
+        onClose = callback;
     }
 }
+

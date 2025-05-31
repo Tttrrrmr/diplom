@@ -1,9 +1,9 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class DoorInteraction : MonoBehaviour
 {
-    public string roomName = "����������� �������";
+    public string roomName = "Неизвестный кабинет";
     public string sceneToLoad = "MainScene";
 
     private SpriteRenderer sr;
@@ -12,12 +12,13 @@ public class DoorInteraction : MonoBehaviour
     private bool playerInside = false;
     private bool uiOpen = false;
 
+    public bool isAdminRoom = false;
+
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.material.color;
 
-        // ���� �������
         TextMeshPro[] texts = GetComponentsInChildren<TextMeshPro>(true);
         foreach (var txt in texts)
         {
@@ -36,7 +37,6 @@ public class DoorInteraction : MonoBehaviour
         {
             playerInside = true;
             sr.material.color = Color.yellow;
-
             if (label != null)
                 label.transform.parent.gameObject.SetActive(true);
         }
@@ -48,7 +48,6 @@ public class DoorInteraction : MonoBehaviour
         {
             playerInside = false;
             sr.material.color = originalColor;
-
             if (label != null)
                 label.transform.parent.gameObject.SetActive(false);
         }
@@ -58,13 +57,44 @@ public class DoorInteraction : MonoBehaviour
     {
         if (playerInside && !uiOpen && Input.GetKeyDown(KeyCode.E))
         {
-            EnterRoomUI ui = FindObjectOfType<EnterRoomUI>();
-            if (ui != null)
+            int role = PlayerSession.RoleId;
+            Debug.Log("Роль игрока: " + role);
+
+            uiOpen = true;
+
+            if (isAdminRoom && role != 1)
             {
-                ui.Show(sceneToLoad, roomName);
-                ui.OnClose += () => { uiOpen = false; }; // �������� �� ��������
-                uiOpen = true;
+                WarningUI warning = FindObjectOfType<WarningUI>();
+                if (warning != null)
+                {
+                    warning.Show("У вас недостаточно прав для входа в этот кабинет.", () =>
+                    {
+                        uiOpen = false;
+                    });
+                }
+                else
+                {
+                    Debug.LogWarning("WarningUI не найден в сцене");
+                    uiOpen = false;
+                }
+
+                return;
+            }
+
+            EnterRoomUI enterUI = FindObjectOfType<EnterRoomUI>();
+            if (enterUI != null)
+            {
+                enterUI.Show(sceneToLoad, roomName);
+                enterUI.SetOnClose(() => uiOpen = false);
+            }
+            else
+            {
+                Debug.LogWarning("EnterRoomUI не найден в сцене");
+                uiOpen = false;
             }
         }
     }
 }
+
+
+

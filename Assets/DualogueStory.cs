@@ -30,5 +30,16 @@ public class DualogueStory : MonoBehaviour
         ChangeStory(_stories[0].Tag);
     }
 
-    public void ChangeStory(string tag) => ChangedStory?.Invoke(_storiesDictionary[tag]);
+    public void ChangeStory(string tag)
+    {
+        if (_storiesDictionary.TryGetValue(tag, out var story))
+        {
+            ChangedStory?.Invoke(story);
+        }
+        else
+        {
+            Debug.LogWarning($"Story с тегом '{tag}' не найден.");
+        }
+    }
+
 }

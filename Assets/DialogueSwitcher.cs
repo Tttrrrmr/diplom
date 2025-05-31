@@ -18,10 +18,16 @@ public class DialogueSwitcher : MonoBehaviour
     private async void Disable(DualogueStory.Story story)
     {
         if (_disableTags.All(disableTag => story.Tag != disableTag)) return;
+
         await Task.Delay(1000);
+
+        // Вместо отключения объекта - просто скрыть UI или Canvas
         _dialogueStory.gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
+
+        // НЕ БЛОКИРУЕМ КУРСОР
+        // Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
