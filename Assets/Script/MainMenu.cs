@@ -17,7 +17,11 @@ public class MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("Приложение закрылось");
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // Для редактора
+#else
+    Application.Quit(); // Для билда
+#endif
     }
+
 }
