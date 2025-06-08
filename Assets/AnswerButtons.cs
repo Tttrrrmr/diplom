@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class AnswerButtons : MonoBehaviour
 {
@@ -30,9 +32,9 @@ public class AnswerButtons : MonoBehaviour
     {
         for (int i = 0; i < _buttonsText.Length; i++)
         {
-            if (story.Answers.Length <= i)
+            if (i >= story.Answers.Length || string.IsNullOrEmpty(story.Answers[i].Text))
             {
-                _buttonsText[i].text = null;
+                _buttonsText[i].text = "";
                 _buttons[i].interactable = false;
                 continue;
             }
@@ -43,6 +45,19 @@ public class AnswerButtons : MonoBehaviour
         }
     }
 
-    private void SendAnswer(int button) => _dialogueStory.ChangeStory(_currentReplyTags[button]);
+
+    private void SendAnswer(int button)
+    {
+        string tag = _currentReplyTags[button];
+
+        if (string.IsNullOrEmpty(tag))
+        {
+            SceneManager.LoadScene("MainScene");
+            return;
+        }
+
+        _dialogueStory.ChangeStory(tag);
+    }
+
 }
 
