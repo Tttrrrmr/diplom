@@ -1,7 +1,7 @@
-using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System;
 
 public class AlertUI : MonoBehaviour
 {
@@ -11,16 +11,14 @@ public class AlertUI : MonoBehaviour
 
     private Action onClose;
 
-    void Awake()
+    void Start()
     {
         panel.SetActive(false);
-
         okButton.onClick.RemoveAllListeners();
         okButton.onClick.AddListener(() =>
         {
             panel.SetActive(false);
             onClose?.Invoke();
-            onClose = null;
         });
     }
 

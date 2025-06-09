@@ -67,7 +67,7 @@ public class Authorisation : MonoBehaviour
             yield return request.SendWebRequest();
 
             // Скрываем индикатор загрузки
-            Auth.SetActive(false);
+            //Auth.SetActive(false);
             EnterButton.interactable = true;
 
             if (request.result == UnityWebRequest.Result.Success) // Если авторизация успешна
@@ -132,7 +132,15 @@ public class Authorisation : MonoBehaviour
     private void ShowError(string message)
     {
         // Здесь можно реализовать показ ошибки пользователю
-        Debug.LogError(message);
+        AlertUI alert = FindObjectOfType<AlertUI>();
+        if (alert != null)
+        {
+            alert.Show(message);
+        }
+        else
+        {
+            Debug.LogError("AlertUI не найден: " + message);
+        }
         // Например, показать всплывающее окно или текст на экране
     }
 
