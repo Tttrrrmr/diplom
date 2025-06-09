@@ -1992,7 +1992,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d882faa3f352d5c48a385d0a64bcced6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomName: "\u041A\u0430\u0431\u0438\u043D\u0435\u0442 \u0411\u0430\u0437 \u0434\u0430\u043D\u043D\u044B\u0445"
+  roomName: "\u041A\u0430\u0431\u0438\u043D\u0435\u0442 \u0411\u0430\u0437\u044B
+    \u0434\u0430\u043D\u043D\u044B\u0445"
   sceneToLoad: BdScene
   isAdminRoom: 0
 --- !u!1 &683020993
