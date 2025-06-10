@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.Networking;
 using TMPro;
+using System.Text.RegularExpressions;
+using System;
+
 
 
 public class Registration1 : MonoBehaviour
@@ -51,39 +54,47 @@ public class Registration1 : MonoBehaviour
 
     private void OnRegisterClicked()
     {
-        string name = NameField.text;
-        string login = LoginField.text;
-        string password = PasswordField.text;
-        string repeatPassword = PsbField.text;
-        int specialtyId = SpesialtyDropdown.value + 1; // +1 если ID начинаются с 1
-
-        // Валидация данных
-        if (string.IsNullOrEmpty(name))
+        try
         {
-            ShowError("Введите имя");
-            return;
-        }
+            string name = NameField.text.Trim();
+            string login = LoginField.text.Trim();
+            string password = PasswordField.text.Trim();
+            string repeatPassword = PsbField.text.Trim();
+            int specialtyId = SpesialtyDropdown.value + 1;
 
-        if (string.IsNullOrEmpty(login))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(login) ||
+                string.IsNullOrEmpty(password) || string.IsNullOrEmpty(repeatPassword))
+            {
+                ShowError("Пожалуйста, заполните все поля.");
+                return;
+            }
+
+            if (!IsValid(name) || !IsValid(login))
+            {
+                ShowError("Имя и логин могут содержать только латиницу и цифры.");
+                return;
+            }
+
+            if (password != repeatPassword)
+            {
+                ShowError("Пароли не совпадают.");
+                return;
+            }
+
+            if (!IsValid(password))
+            {
+                ShowError("Пароль должен содержать 4–20 символов: только латиница и цифры.");
+                return;
+            }
+
+            StartCoroutine(RegisterCoroutine(name, login, password, specialtyId));
+        }
+        catch (Exception ex)
         {
-            ShowError("Введите логин");
-            return;
+            ShowError("Ошибка: " + ex.Message);
         }
-
-        if (password != repeatPassword)
-        {
-            ShowError("Пароли не совпадают");
-            return;
-        }
-
-        if (password.Length < 5)
-        {
-            ShowError("Пароль должен содержать минимум 5 символов");
-            return;
-        }
-
-        StartCoroutine(RegisterCoroutine(name, login, password, specialtyId));
     }
+
 
     private IEnumerator RegisterCoroutine(string name, string login, string password, int specialtyId)
     {
@@ -135,27 +146,26 @@ public class Registration1 : MonoBehaviour
     {
         try
         {
-            // Парсим ответ
             var response = JsonUtility.FromJson<RegistrationResponse>(responseJson);
 
             if (response.message == "User created successfully")
             {
-                // Показываем сообщение об успехе
-                ShowSuccess("Регистрация прошла успешно!");
-
-                // Можно автоматически войти или перейти на другую сцену
-                // SceneManager.LoadScene("LoginScene");
+                ShowSuccess("Регистрация прошла успешно!", () =>
+                {
+                    SceneManager.LoadScene("MenuScene");
+                });
             }
             else
             {
                 ShowError("Ошибка регистрации: " + response.message);
             }
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             ShowError($"Ошибка обработки ответа: {e.Message}");
         }
     }
+
 
     private void HandleRegistrationError(UnityWebRequest request)
     {
@@ -183,15 +193,23 @@ public class Registration1 : MonoBehaviour
 
     private void ShowError(string message)
     {
-        // Реализуйте отображение ошибки (всплывающее окно или текст на экране)
-        Debug.LogError(message);
+        var alert = FindObjectOfType<AlertUI>();
+        if (alert != null) alert.Show(message);
+        else Debug.LogWarning("Ошибка (и AlertUI не найден): " + message);
     }
 
-    private void ShowSuccess(string message)
+    private void ShowSuccess(string message, Action callback = null)
     {
-        // Реализуйте отображение успешного сообщения
-        Debug.Log(message);
+        var alert = FindObjectOfType<AlertUI>();
+        if (alert != null) alert.Show(message, callback);
+        else
+        {
+            Debug.Log(message);
+            callback?.Invoke(); // всё равно продолжим
+        }
     }
+
+
 
     private void OnBackClicked()
     {
@@ -223,4 +241,9 @@ public class Registration1 : MonoBehaviour
     {
         public string detail;
     }
+    private bool IsValid(string input)
+    {
+        return Regex.IsMatch(input, @"^[a-zA-Z0-9]{4,20}$"); // латиница + цифры, от 4 до 20 символов
+    }
+
 }

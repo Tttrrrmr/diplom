@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.Networking;
 using TMPro;
+using System;
+using System.Text.RegularExpressions;
 
 public class Authorisation : MonoBehaviour
 {
@@ -21,38 +23,43 @@ public class Authorisation : MonoBehaviour
 
     private void Start()
     {
-        // Настройка кнопок
         EnterButton.onClick.AddListener(OnLoginClicked);
         BackButton.onClick.AddListener(OnBackClicked);
-
-        // Настройка полей ввода
         PasswordField.contentType = TMP_InputField.ContentType.Password;
-
-        // Скрываем индикатор загрузки
-        // Auth.SetActive(false);
     }
 
     private void OnLoginClicked()
     {
-        string username = LoginField.text;
-        string password = PasswordField.text;
-
-        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+        try
         {
-            ShowError("Логин и пароль не могут быть пустыми");
-            return;
-        }
+            string username = LoginField.text.Trim();
+            string password = PasswordField.text.Trim();
 
-        StartCoroutine(LoginCoroutine(username, password));
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                ShowError("Логин и пароль не могут быть пустыми");
+                return;
+            }
+
+            if (!IsValid(username) || !IsValid(password))
+            {
+                ShowError("Допустимы только буквы латиницы и цифры, без пробелов и спецсимволов.");
+                return;
+            }
+
+            StartCoroutine(LoginCoroutine(username, password));
+        }
+        catch (Exception ex)
+        {
+            ShowError("Ошибка ввода: " + ex.Message);
+        }
     }
 
     private IEnumerator LoginCoroutine(string username, string password)
     {
-        // Показываем индикатор загрузки
         Auth.SetActive(true);
         EnterButton.interactable = false;
 
-        // Формируем данные для авторизации
         WWWForm form = new WWWForm();
         form.AddField("grant_type", "password");
         form.AddField("username", username);
@@ -61,23 +68,19 @@ public class Authorisation : MonoBehaviour
         form.AddField("client_id", clientId);
         form.AddField("client_secret", clientSecret);
 
-        // Отправляем запрос
         using (UnityWebRequest request = UnityWebRequest.Post(loginUrl, form))
         {
             yield return request.SendWebRequest();
 
-            // Скрываем индикатор загрузки
             Auth.SetActive(false);
             EnterButton.interactable = true;
 
-            if (request.result == UnityWebRequest.Result.Success) // Если авторизация успешна
+            if (request.result == UnityWebRequest.Result.Success)
             {
-                // Обрабатываем успешную авторизацию
-                HandleSuccessfulLogin(request.downloadHandler.text); // Выполнить эту функцию с текстом из ответа
+                HandleSuccessfulLogin(request.downloadHandler.text);
             }
             else
             {
-                // Обрабатываем ошибку
                 HandleLoginError(request);
             }
         }
@@ -87,21 +90,22 @@ public class Authorisation : MonoBehaviour
     {
         try
         {
-            // Парсим ответ
             var response = JsonUtility.FromJson<LoginResponse>(responseJson);
-
-            // Сохраняем токен (можно использовать PlayerPrefs или другой менеджер)
             PlayerPrefs.SetString("access_token", response.access_token);
             PlayerPrefs.SetInt("user_id", response.user_id);
             PlayerPrefs.SetString("user_name", response.user_name);
-            PlayerPrefs.Save(); // 
+            PlayerPrefs.Save();
 
-            // Переходим на главный экран
+            // устанавливаем роль по текстовому полю, если есть
+            if (response.role == "admin") PlayerSession.RoleId = 1;
+            else if (response.role == "user") PlayerSession.RoleId = 2;
+            else PlayerSession.RoleId = 0;
+
             SceneManager.LoadScene("AvatarScene");
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
-            ShowError($"Ошибка обработки ответа: {e.Message}");
+            ShowError("Ошибка обработки ответа: " + e.Message);
         }
     }
 
@@ -109,7 +113,7 @@ public class Authorisation : MonoBehaviour
     {
         string errorMessage = "Ошибка авторизации";
 
-        if (request.responseCode == 401) // Unauthorized
+        if (request.responseCode == 401)
         {
             try
             {
@@ -131,18 +135,21 @@ public class Authorisation : MonoBehaviour
 
     private void ShowError(string message)
     {
-        // Здесь можно реализовать показ ошибки пользователю
-        Debug.LogError(message);
-        // Например, показать всплывающее окно или текст на экране
+        var alert = FindObjectOfType<AlertUI>();
+        if (alert != null) alert.Show(message);
+        else Debug.LogWarning("Ошибка (и AlertUI не найден): " + message);
     }
 
     private void OnBackClicked()
     {
-        // Возврат на предыдущую сцену
         SceneManager.LoadScene("MenuScene");
     }
 
-    // Модели для ответов API
+    private bool IsValid(string input)
+    {
+        return Regex.IsMatch(input, @"^[a-zA-Z0-9]{4,20}$");
+    }
+
     [System.Serializable]
     private class LoginResponse
     {
@@ -159,3 +166,4 @@ public class Authorisation : MonoBehaviour
         public string detail;
     }
 }
+
