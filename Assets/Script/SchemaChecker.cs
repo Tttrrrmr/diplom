@@ -15,6 +15,7 @@ public class SchemaChecker : MonoBehaviour
         "Block_Input",
         "Block_Command",
         "Block_Condition",
+        "Block_Output",
         "Block_End"
     };
 
