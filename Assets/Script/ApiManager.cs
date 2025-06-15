@@ -187,6 +187,46 @@ public class ApiManager : MonoBehaviour
             onSuccess?.Invoke(response);
         }, onFailure);
     }
+
+    public static IEnumerator SendTaskResult(string taskName, float result)
+    {
+        string url = "https://gameapi.gd-alt.ru/api/task_results";
+
+        var payload = new TaskResultData
+        {
+            task = taskName,
+            score = result
+        };
+
+        string json = JsonUtility.ToJson(payload);
+
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("Результат успешно отправлен!");
+        }
+        else
+        {
+            Debug.LogWarning("Ошибка при отправке результата: " + request.error);
+        }
+
+        // НИКАКОЙ Time.timeScale = 0 И SceneManager.LoadScene здесь быть НЕ ДОЛЖНО
+    }
+
+    [System.Serializable]
+    public class TaskResultData
+    {
+        public string task;
+        public float score;
+    }
+
     #endregion
 
     //получение прогресса пользователя
@@ -353,3 +393,4 @@ public static class JsonHelper
         public T[] items;
     }
 }
+
