@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Picture/shto3.png.meta
-guid: 731a7885316332a46a5cab35012434be
+guid: cc9be4dec2591f74db0269bf42bcc66e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5263099860826439082
-    second: 2 (2)_0
-========
-guid: a036d494b11b45842878dbe3cfaa4144
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -7437625044491818790
-    second: saved_0
->>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/saved.png.meta
+      213: 6937817954938267909
+    second: 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,23 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Picture/shto3.png.meta
-      name: 2 (2)_0
+      name: 2_0
       rect:
         serializedVersion: 2
         x: 40
         y: 132
         width: 515
         height: 154
-========
-      name: saved_0
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 133
-        width: 388
-        height: 137
->>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/saved.png.meta
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,13 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-<<<<<<<< HEAD:Assets/Picture/shto3.png.meta
-      spriteID: 652480acf86b5f6b0800000000000000
-      internalID: -5263099860826439082
-========
-      spriteID: ad82482ad6f38c890800000000000000
-      internalID: -7437625044491818790
->>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/saved.png.meta
+      spriteID: 5092c600ca4184060800000000000000
+      internalID: 6937817954938267909
       vertices: []
       indices: 
       edges: []
@@ -159,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      2 (2)_0: -5263099860826439082
+      2_0: 6937817954938267909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
