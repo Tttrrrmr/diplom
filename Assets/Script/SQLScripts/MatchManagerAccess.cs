@@ -5,7 +5,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MatchManager : MonoBehaviour
+public class MatchManagerAccess : MonoBehaviour
 {
     public RectTransform panelLeft, panelRight;
     public GameObject itemPrefab;
@@ -23,11 +23,11 @@ public class MatchManager : MonoBehaviour
         var commands = new Dictionary<string, string>
         {
             {"SELECT", "Выбор данных из таблицы"},
-            {"INSERT", "Вставка строки в таблицу"},
-            {"UPDATE", "Обновление записи"},
-            {"GROUP BY", "Группировка данных"},
-            {"WHERE", "Фильтрация записей"},
-            {"DELETE", "Удаление строки"}
+            {"INSERT INTO", "Добавление новой записи в таблицу"},
+            {"WHERE", "Условие фильтрации строк"},
+            {"ORDER BY", "Сортировка результатов"},
+            {"JOIN", "Объединение таблиц по ключевым полям"},
+            {"IS NULL", "Проверка на пустые значения"}
         };
 
         Populate(commands);
@@ -89,6 +89,7 @@ public class MatchManager : MonoBehaviour
 
         resultText.text = $"Правильно: {correct}/{correctMap.Count}\nБаллы: {score}\nВремя: {time:F2} сек";
 
-        StartCoroutine(ApiManager.SendTaskResult("SQLGame", score));
+        StartCoroutine(ApiManager.SendTaskResult("AccessGame", score));
     }
+
 }
