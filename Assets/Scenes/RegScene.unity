@@ -2805,6 +2805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252466499}
     m_Modifications:
+    - target: {fileID: 2030777831501111421, guid: 446ebccda5d114f479be4bf4d6ba463d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2982354884141518938, guid: 087646c691136bb4ca26432946da4e37, type: 3}
     - target: {fileID: 3853501447450404970, guid: 446ebccda5d114f479be4bf4d6ba463d, type: 3}
       propertyPath: m_Name
       value: RegButton
