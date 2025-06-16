@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 0875362829a8cce46b6f12325fa136ee
+<<<<<<<< HEAD:Assets/Picture/shto.png.meta
+guid: df0144cb6c6b7204d967aa8fce4cb808
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1061801751286890457
-    second: save_0
+      213: -855298285791758126
+    second: 1_0
+========
+guid: ad6bd50b1e5799c4ca0be3dc5dc6ba10
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3240173496959194567
+    second: theory_0
+>>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/theory.jpg.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +105,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: save_0
+<<<<<<<< HEAD:Assets/Picture/shto.png.meta
+      name: 1_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 88
-        width: 961
-        height: 617
+        x: 95
+        y: 96
+        width: 413
+        height: 218
+========
+      name: theory_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1536
+        height: 1024
+>>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/theory.jpg.meta
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9dfb75f21174cbe00800000000000000
-      internalID: 1061801751286890457
+<<<<<<<< HEAD:Assets/Picture/shto.png.meta
+      spriteID: 2d8b16a9dbe5124f0800000000000000
+      internalID: -855298285791758126
+========
+      spriteID: 7c553e8d0a867fc20800000000000000
+      internalID: 3240173496959194567
+>>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/theory.jpg.meta
       vertices: []
       indices: 
       edges: []
@@ -148,7 +159,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      save_0: 1061801751286890457
+      1_0: -855298285791758126
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
