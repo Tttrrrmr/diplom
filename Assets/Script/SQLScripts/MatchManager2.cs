@@ -5,7 +5,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 
-public class MatchManager : MonoBehaviour
+public class MatchManager2 : MonoBehaviour
 {
     public RectTransform panelLeft, panelRight;
     public GameObject itemPrefab;
@@ -22,12 +22,13 @@ public class MatchManager : MonoBehaviour
         Time.timeScale = 1;
         var commands = new Dictionary<string, string>
         {
-            {"SELECT", "Выбор данных из таблицы"},
-            {"INSERT", "Добавление новых записей"},
-            {"UPDATE", "Изменение существующих данных"},
-            {"DELETE", "Удаление записей"},
-            {"CREATE TABLE", "Создание новой таблицы"},
-            {"ALTER TABLE", "Изменение структуры таблицы"}
+            {"DROP TABLE", "Удаление таблицы"},
+            {"JOIN (INNER, LEFT, RIGHT, FULL)", "Соединение таблиц"},
+            {"GROUP BY", "Группировка данных"},
+            {"ORDER BY", "Сортировка результатов"},
+            {"WHERE", "Фильтрация записей"},
+            {"HAVING", "Фильтрация после группировки"},
+            {"DISTINCT", "Выбор уникальных значений"}
         };
 
         Populate(commands);
