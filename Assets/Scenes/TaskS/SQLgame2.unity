@@ -680,7 +680,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1010538466}
-  - component: {fileID: 1010538467}
+  - component: {fileID: 1010538465}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -688,22 +688,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1010538466
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010538464}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 322.955, y: 211.77692, z: 2.3750494}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1010538467
+--- !u!114 &1010538465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,6 +705,21 @@ MonoBehaviour:
   itemPrefab: {fileID: 3310126078908761731, guid: 5416efa90b38f2a44bfcfa9b75b52f11, type: 3}
   checkButton: {fileID: 1979066309}
   resultText: {fileID: 321117266}
+--- !u!4 &1010538466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010538464}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 322.955, y: 211.77692, z: 2.3750494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1182812163
 GameObject:
   m_ObjectHideFlags: 0
