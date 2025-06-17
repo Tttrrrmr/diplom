@@ -216,8 +216,6 @@ public class ApiManager : MonoBehaviour
         {
             Debug.LogWarning("Ошибка при отправке результата: " + request.error);
         }
-
-        // НИКАКОЙ Time.timeScale = 0 И SceneManager.LoadScene здесь быть НЕ ДОЛЖНО
     }
 
     [System.Serializable]
