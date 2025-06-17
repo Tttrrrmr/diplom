@@ -20,6 +20,6 @@ public class MatchItem : MonoBehaviour
     public void Toggle()
     {
         IsSelected = !IsSelected;
-        Text.color = IsSelected ? Color.green : Color.white;
+        Text.color = IsSelected ? Color.green : Color.white ;
     }
 }

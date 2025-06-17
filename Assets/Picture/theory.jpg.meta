@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Picture/shto.png.meta
 guid: 71686920bc51f6b46b8d3381d4e208be
-TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -855298285791758126
-    second: 1_0
-========
-guid: ad6bd50b1e5799c4ca0be3dc5dc6ba10
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: 3240173496959194567
     second: theory_0
->>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/theory.jpg.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,15 +100,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Picture/shto.png.meta
-      name: 1_0
-      rect:
-        serializedVersion: 2
-        x: 95
-        y: 96
-        width: 413
-        height: 218
-========
       name: theory_0
       rect:
         serializedVersion: 2
@@ -125,7 +107,6 @@ TextureImporter:
         y: 0
         width: 1536
         height: 1024
->>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/theory.jpg.meta
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,13 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-<<<<<<<< HEAD:Assets/Picture/shto.png.meta
-      spriteID: 2d8b16a9dbe5124f0800000000000000
-      internalID: -855298285791758126
-========
       spriteID: 7c553e8d0a867fc20800000000000000
       internalID: 3240173496959194567
->>>>>>>> a8b00824ebc9cf641ba50ce04b32a740aec0ba6c:Assets/Picture/theory.jpg.meta
       vertices: []
       indices: 
       edges: []
@@ -158,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      1_0: -855298285791758126
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
