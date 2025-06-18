@@ -473,16 +473,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56120517}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.91624993, y: 0.91624993, z: 0.91624993}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034655054}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 793, y: 346}
+  m_AnchoredPosition: {x: 789, y: 402}
   m_SizeDelta: {x: 164.38, y: 59.24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &56120519
@@ -3224,8 +3224,8 @@ RectTransform:
   m_Children:
   - {fileID: 1995675474}
   - {fileID: 1160103998}
-  - {fileID: 56120518}
   - {fileID: 1339534046}
+  - {fileID: 56120518}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3909,11 +3909,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b31f6cc87b7bb74fbcd417c2810212c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  confirmationPanel: {fileID: 1339534045}
-  yesButton: {fileID: 1891782413}
-  noButton: {fileID: 984404547}
-  messageText: {fileID: 0}
-  apiManager: {fileID: 0}
 --- !u!114 &1339534050
 MonoBehaviour:
   m_ObjectHideFlags: 0
