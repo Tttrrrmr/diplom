@@ -1,21 +1,25 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class ExitButtonHandler : MonoBehaviour
 {
-    public GameObject confirmationPanel; // Панель подтверждения
-    public Button yesButton;
-    public Button noButton;
-    public Text messageText;
-    public ApiManager apiManager;
+    [SerializeField] private GameObject confirmationPanel;
+    [SerializeField] private Button yesButton;
+    [SerializeField] private Button noButton;
+    [SerializeField] private TMP_Text messageText;
+    [SerializeField] private ApiManager apiManager;
 
     private void Start()
     {
-        confirmationPanel.SetActive(false);
+        if (confirmationPanel == null) Debug.LogError("ConfirmationPanel не назначен!");
+        if (messageText == null) Debug.LogError("MessageText не назначен!");
+        if (yesButton == null || noButton == null) Debug.LogError("Кнопки не назначены!");
 
-        yesButton.onClick.AddListener(OnYesClicked);
-        noButton.onClick.AddListener(OnNoClicked);
+        confirmationPanel?.SetActive(false);
+        yesButton?.onClick.AddListener(OnYesClicked);
+        noButton?.onClick.AddListener(OnNoClicked);
     }
 
     public void OnExitButtonPressed()
@@ -35,7 +39,7 @@ public class ExitButtonHandler : MonoBehaviour
             onFailure: (error) =>
             {
                 Debug.LogError("Ошибка при удалении аккаунта: " + error);
-                confirmationPanel.SetActive(false); // Закрыть даже при ошибке
+                confirmationPanel.SetActive(false);
             }
         ));
     }
