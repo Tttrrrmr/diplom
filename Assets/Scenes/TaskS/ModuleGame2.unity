@@ -695,8 +695,10 @@ MonoBehaviour:
   maxScore: 25
   taskId: 3
   correctElements:
-  - Image
+  - PasswordBox
+  - TextBlock
   - TextBox
+  - Button
 --- !u!4 &424158972
 Transform:
   m_ObjectHideFlags: 0

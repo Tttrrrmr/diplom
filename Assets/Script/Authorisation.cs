@@ -72,7 +72,7 @@ public class Authorisation : MonoBehaviour
         {
             yield return request.SendWebRequest();
 
-            Auth.SetActive(false);
+            //Auth.SetActive(false);
             EnterButton.interactable = true;
 
             if (request.result == UnityWebRequest.Result.Success)
@@ -115,15 +115,7 @@ public class Authorisation : MonoBehaviour
 
         if (request.responseCode == 401)
         {
-            try
-            {
-                var errorResponse = JsonUtility.FromJson<ErrorResponse>(request.downloadHandler.text);
-                errorMessage = errorResponse.detail ?? "Неверный логин или пароль";
-            }
-            catch
-            {
-                errorMessage = "Неверный логин или пароль";
-            }
+            errorMessage = "Неверный логин или пароль";
         }
         else if (request.result == UnityWebRequest.Result.ConnectionError)
         {
@@ -132,6 +124,7 @@ public class Authorisation : MonoBehaviour
 
         ShowError(errorMessage);
     }
+
 
     private void ShowError(string message)
     {

@@ -2083,6 +2083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1336413804}
   - component: {fileID: 1336413806}
+  - component: {fileID: 1336413807}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -2124,6 +2125,18 @@ MonoBehaviour:
   checkButton: {fileID: 745009206}
   resultText: {fileID: 1861073802}
   schemaPanel: {fileID: 1285213678}
+--- !u!114 &1336413807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336413803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ca37fc5f2d1114e8bffe970615ae34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1452208264
 GameObject:
   m_ObjectHideFlags: 0
