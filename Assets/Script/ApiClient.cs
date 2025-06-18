@@ -109,7 +109,7 @@ public class ApiClient : MonoBehaviour
     public IEnumerator CreateClassification(string name, Action<string> onSuccess, Action<string> onError)
     {
         string url = BASE_URL + "classifications/?name=" + UnityWebRequest.EscapeURL(name);
-        UnityWebRequest request = UnityWebRequest.Post(url, "");
+        UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");
         SetAuthHeader(request);
         yield return request.SendWebRequest();
 
