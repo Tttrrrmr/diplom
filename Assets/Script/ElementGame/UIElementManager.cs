@@ -14,7 +14,7 @@ public class UIElementManager : MonoBehaviour
     public float maxScore = 25f;
 
     [Header("ID задания для API")]
-    public string taskName = "task_3"; // будет передано в API как строка
+    public int taskId = 3;
 
     [Header("Правильные элементы")]
     public List<string> correctElements;
@@ -50,7 +50,12 @@ public class UIElementManager : MonoBehaviour
         resultText.text = $"✅ Правильных: {correctSelected}/{totalCorrect}\n❌ Ошибок: {incorrectSelected}\n🏅 Баллы: {score}";
 
         LockAllSelectableElements();
-        StartCoroutine(ApiManager.SendTaskResult(taskName, score));
+        StartCoroutine(
+            FindObjectOfType<ApiManager>().SaveProgress(taskId, Mathf.RoundToInt(score),
+                onSuccess: data => Debug.Log("Сохранено: " + data.scores),
+                onFailure: err => Debug.LogError("Ошибка: " + err)
+    )
+);
     }
 
     void LockAllSelectableElements()

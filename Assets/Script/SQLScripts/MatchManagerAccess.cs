@@ -90,7 +90,12 @@ public class MatchManagerAccess : MonoBehaviour
 
         resultText.text = $"Правильно: {correct}/{correctMap.Count}\nБаллы: {score}\nВремя: {time:F2} сек";
 
-        StartCoroutine(ApiManager.SendTaskResult("AccessGame", score));
+        StartCoroutine(
+            FindObjectOfType<ApiManager>().SaveProgress(5, Mathf.RoundToInt(score),
+                onSuccess: data => Debug.Log("Сохранено: " + data.scores),
+                onFailure: err => Debug.LogError("Ошибка: " + err)
+            )
+        );
     }
 
 }

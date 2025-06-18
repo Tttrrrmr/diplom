@@ -90,6 +90,11 @@ public class MatchManager2 : MonoBehaviour
 
         resultText.text = $"Правильно: {correct}/{correctMap.Count}\nБаллы: {score}\nВремя: {time:F2} сек";
 
-        StartCoroutine(ApiManager.SendTaskResult("SQLGame", score));
+        StartCoroutine(
+            FindObjectOfType<ApiManager>().SaveProgress(4, Mathf.RoundToInt(score),
+                onSuccess: data => Debug.Log("Сохранено: " + data.scores),
+                onFailure: err => Debug.LogError("Ошибка: " + err)
+            )
+        );
     }
 }

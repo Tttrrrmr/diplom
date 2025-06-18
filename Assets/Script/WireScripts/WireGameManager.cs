@@ -5,6 +5,7 @@ using TMPro;
 using System.Linq;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class WireGameManager : MonoBehaviour
 {
@@ -92,7 +93,12 @@ public class WireGameManager : MonoBehaviour
             resultText.text = $"Успех! Время: {time:F2} сек";
 
             // Отправка в API (если нужно)
-            StartCoroutine(ApiManager.SendTaskResult("WireGame", (float)time));
+            StartCoroutine(
+                FindObjectOfType<ApiManager>().SaveProgress(8, Mathf.RoundToInt((float) time),
+                    onSuccess: data => Debug.Log("Сохранено: " + data.scores),
+                    onFailure: err => Debug.LogError("Ошибка: " + err)
+                )
+            );
         }
         else
         {
