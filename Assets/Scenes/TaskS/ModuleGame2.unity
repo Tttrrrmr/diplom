@@ -693,10 +693,12 @@ MonoBehaviour:
   submitButton: {fileID: 1139470813}
   resultText: {fileID: 1638668303}
   maxScore: 25
-  taskName: task_3
+  taskId: 3
   correctElements:
-  - Image
+  - PasswordBox
+  - TextBlock
   - TextBox
+  - Button
 --- !u!4 &424158972
 Transform:
   m_ObjectHideFlags: 0
@@ -2020,7 +2022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 2034905850628142949, guid: 556d7c5e37d669f43a84ee50dbbbdcd2, type: 3}
+  m_Sprite: {fileID: 7182652594213354363, guid: b83420ffa937ecb4db508fbbedaa887b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
