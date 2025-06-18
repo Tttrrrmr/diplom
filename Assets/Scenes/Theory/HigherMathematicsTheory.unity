@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 506849822}
   - component: {fileID: 506849821}
   - component: {fileID: 506849820}
+  - component: {fileID: 506849823}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -239,6 +240,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506849818}
   m_CullTransparentMesh: 1
+--- !u!114 &506849823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506849818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b760d7594327f3409bbf10560619cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paperScene: MathScene
 --- !u!1 &532874538
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,8 +699,8 @@ GameObject:
   - component: {fileID: 1454396247}
   - component: {fileID: 1454396251}
   - component: {fileID: 1454396250}
-  - component: {fileID: 1454396249}
   - component: {fileID: 1454396248}
+  - component: {fileID: 1454396252}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -757,19 +771,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1454396249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454396246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
 --- !u!114 &1454396250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +809,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454396246}
   m_CullTransparentMesh: 1
+--- !u!114 &1454396252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454396246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816cb715e78c95941b4dfc9fa8f30a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task3SceneName: TaskScene3
 --- !u!1 &1612618819
 GameObject:
   m_ObjectHideFlags: 0

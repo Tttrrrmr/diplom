@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 2122233255}
   - component: {fileID: 2122233254}
   - component: {fileID: 2122233253}
+  - component: {fileID: 2122233256}
   m_Layer: 5
   m_Name: SystemsButton
   m_TagString: Untagged
@@ -817,6 +818,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122233251}
   m_CullTransparentMesh: 1
+--- !u!114 &2122233256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122233251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9a238d1452f3f48adc7755c2b77d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CompNetScene: CompNetworksTheoryScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

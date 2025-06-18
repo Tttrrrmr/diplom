@@ -316,6 +316,7 @@ GameObject:
   - component: {fileID: 653395304}
   - component: {fileID: 653395303}
   - component: {fileID: 653395302}
+  - component: {fileID: 653395305}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -424,6 +425,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653395300}
   m_CullTransparentMesh: 1
+--- !u!114 &653395305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653395300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a9279800d9fab4e8305eda1a98d6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comp2Scene1: BdScene
 --- !u!1 &1030739681
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +449,8 @@ GameObject:
   - component: {fileID: 1030739682}
   - component: {fileID: 1030739686}
   - component: {fileID: 1030739685}
-  - component: {fileID: 1030739684}
   - component: {fileID: 1030739683}
+  - component: {fileID: 1030739687}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -507,19 +521,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1030739684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030739681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
 --- !u!114 &1030739685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +559,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1030739681}
   m_CullTransparentMesh: 1
+--- !u!114 &1030739687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030739681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2014447a3d87464fae3391f07f3ac12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task2SceneName: TaskScene2
 --- !u!1 &1258824007
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,8 +810,8 @@ MonoBehaviour:
     \u0438\u043D\u0434\u0435\u043A\u0441\u0430 \u0434\u043B\u044F \u0443\u0441\u043A\u043E\u0440\u0435\u043D\u0438\u044F
     \u043F\u043E\u0438\u0441\u043A\u0430.\r\n\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -956,8 +970,8 @@ MonoBehaviour:
     \u0442\u0430\u0431\u043B\u0438\u0446\u044B.\r\n\u2022 ALTER TABLE \u2013 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u0438\u0435
     \u0441\u0442\u0440\u0443\u043A\u0442\u0443\u0440\u044B \u0442\u0430\u0431\u043B\u0438\u0446\u044B.\r\n\r"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

@@ -212,8 +212,8 @@ MonoBehaviour:
     \u0431\u0435\u043B\u043E - \u043A\u043E\u0440\u0438\u0447\u043D\u0435\u0432\u044B\u0439\n4.
     \u0441\u0438\u043D\u0438\u0439\t\t\t\t\t\t\t\t\t8. \u043A\u043E\u0440\u0438\u0447\u043D\u0435\u0432\u044B\u0439"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -471,8 +471,8 @@ GameObject:
   - component: {fileID: 1204122972}
   - component: {fileID: 1204122975}
   - component: {fileID: 1204122974}
-  - component: {fileID: 1204122976}
   - component: {fileID: 1204122973}
+  - component: {fileID: 1204122976}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -590,10 +590,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1204122971}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f95cc61a1b9678439023ab8dec8d2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
+  task5SceneName: TaskScene5
 --- !u!1 &1592214808
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +786,7 @@ GameObject:
   - component: {fileID: 1887657429}
   - component: {fileID: 1887657428}
   - component: {fileID: 1887657427}
+  - component: {fileID: 1887657430}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -894,6 +895,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887657425}
   m_CullTransparentMesh: 1
+--- !u!114 &1887657430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1887657425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 192c8ad218ee3c845867ebafdfd686cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comp1Scene1: SystemScene
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
