@@ -35,10 +35,11 @@ public class DialogueUI : MonoBehaviour
         }
         else
         {
-            // ѕоследн€€ строка Ч можно скрыть next
-            nextButton.SetActive(false);
+            // ѕереход на сцену после последней строки
+            SceneManager.LoadScene("MainScene");
         }
     }
+
 
     public void OnAnswerClicked()
     {

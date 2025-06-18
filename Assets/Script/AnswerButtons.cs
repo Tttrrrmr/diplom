@@ -52,12 +52,21 @@ public class AnswerButtons : MonoBehaviour
 
         if (string.IsNullOrEmpty(tag))
         {
-            SceneManager.LoadScene("MainScene");
+            Debug.LogWarning("ѕустой ответ. —цена не загружена.");
             return;
         }
 
-        _dialogueStory.ChangeStory(tag);
+        // ≈сли tag Ч это им€ сцены, загружаем еЄ
+        if (tag == "MenuScene" || tag == "MainScene" || tag.EndsWith("Scene"))
+        {
+            SceneManager.LoadScene(tag);
+        }
+        else
+        {
+            _dialogueStory.ChangeStory(tag);
+        }
     }
+
 
 }
 
