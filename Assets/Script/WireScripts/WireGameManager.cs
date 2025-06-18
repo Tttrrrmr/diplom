@@ -5,6 +5,7 @@ using TMPro;
 using System.Linq;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class WireGameManager : MonoBehaviour
 {
@@ -23,6 +24,18 @@ public class WireGameManager : MonoBehaviour
 
     private string[] colorNames = { "Red", "Green", "Blue", "Yellow" };
     private Color[] colors = { Color.red, Color.green, Color.blue, Color.yellow };
+
+    int CalculateScore(double time)
+    {
+        if (time >= 60.0)
+            return 0;
+
+        if (time <= 10.0)
+            return 50;
+
+        float t = (float)((60.0 - time) / 50.0);
+        return Mathf.RoundToInt(t * 50f);
+    }
 
     void Start()
     {
@@ -89,10 +102,16 @@ public class WireGameManager : MonoBehaviour
         {
             timer.Stop();
             double time = timer.Elapsed.TotalSeconds;
-            resultText.text = $"Успех! Время: {time:F2} сек";
 
-            // Отправка в API (если нужно)
-            StartCoroutine(ApiManager.SendTaskResult("WireGame", (float)time));
+            int score = CalculateScore(time);
+            resultText.text = $"Успех! Время: {time:F2} сек\nБаллы: {score}";
+
+            StartCoroutine(
+                FindObjectOfType<ApiManager>().SaveProgress(8, score,
+                    onSuccess: data => Debug.Log("Сохранено: " + data.scores),
+                    onFailure: err => Debug.LogError("Ошибка: " + err)
+                )
+            );
         }
         else
         {

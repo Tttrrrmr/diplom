@@ -75,6 +75,11 @@ public class WireSortingGameManual : MonoBehaviour
 
         resultText.text = (correct ? "Правильно!" : "Неправильно!") + $" Время: {time} сек. Баллы: {score}";
 
-        StartCoroutine(ApiManager.SendTaskResult("wires_sorting", score));
+        StartCoroutine(
+            FindObjectOfType<ApiManager>().SaveProgress(6, Mathf.RoundToInt(score),
+                onSuccess: data => Debug.Log("Сохранено: " + data.scores),
+                onFailure: err => Debug.LogError("Ошибка: " + err)
+            )
+        );
     }
 }
