@@ -7,202 +7,133 @@ using System.Collections.Generic;
 
 public class ApiManager : MonoBehaviour
 {
-    private const string BASE_API_URL = "https://gameapi.gd-alt.ru/api/";
-
+    private const string BASE_URL = "https://gameapi.gd-alt.ru/api/";
     private string _accessToken;
-    private int _userId;
-    private string _userName;
-    private string _userRole;
 
-    #region Data Models
     [Serializable]
-    public class RegisterRequestData
-    {
-        public int level_type_id;
-        public int role_id;
-        public int specialty_id;
-        public string name;
-        public string login;
-        public string password;
+    public class LoginResponse 
+    { 
+        public string access_token; 
+        public string token_type; 
+        public string user_name; 
+        public string role; 
+        public int user_id; 
     }
 
     [Serializable]
-    public class RegisterResponseData
-    {
-        public string message;
-        public int user_id;
+    public class RegisterRequest 
+    { 
+        public int level_type_id; 
+        public int role_id; 
+        public int specialty_id; 
+        public string name; 
+        public string login; 
+        public string password; 
     }
 
     [Serializable]
-    public class LoginResponseData
-    {
-        public string token_type;
-        public int user_id;
-        public string user_name;
-        public string role;
-        public string access_token;
+    public class UserCreate 
+    { 
+        public string name; 
+        public string login; 
+        public string password; 
+        public int role_id; 
+        public int specialty_id; 
+        public int level_type_id; 
     }
 
     [Serializable]
-    public class ProgressData
-    {
-        public int object_id;
-        public int scores;
+    public class UserUpdate 
+    { 
+        public string name; 
     }
 
     [Serializable]
-    public class ProgressResponseData
-    {
-        public int id;
-        public int user_id;
-        public int object_id;
-        public int scores;
+    public class Classification 
+    { 
+        public int id; 
+        public string name; 
     }
 
     [Serializable]
-    public class AccountDeleteResponse
-    {
-        public string status;
-        public string message;
-        public int id;
-        public string name;
-        public int deleted_progress_records;
+    public class Cabinet 
+    { 
+        public int id; 
+        public string number_cabinet; 
     }
 
     [Serializable]
-    public class ApiErrorResponse
-    {
-        public string detail;
+    public class LevelType 
+    { 
+        public int id; 
+        public string name; 
     }
 
     [Serializable]
-    public class Cabinet
-    {
-        public int id;
-        public string number_cabinet;
+    public class Specialty 
+    { 
+        public int id; 
+        public string name; 
     }
 
     [Serializable]
-    public class Classification
-    {
-        public int id;
-        public string name;
+    public class Role 
+    { 
+        public int id; 
+        public string name; 
     }
 
     [Serializable]
-    public class LevelType
-    {
-        public int id;
-        public string name;
+    public class ObjectCreate 
+    { 
+        public string name; 
+        public int cabinet_id; 
+        public int classification_id; 
     }
 
     [Serializable]
-    public class Role
-    {
-        public int id;
-        public string name;
+    public class ProgressData 
+    { 
+        public int object_id; 
+        public int scores; 
     }
 
-    [Serializable]
-    public class Specialty
+    private void SetAuthHeader(UnityWebRequest request)
     {
-        public int id;
-        public string name;
+        if (!string.IsNullOrEmpty(_accessToken))
+            request.SetRequestHeader("Authorization", $"Bearer {_accessToken}");
     }
 
-    [Serializable]
-    public class Object
+    public IEnumerator Login(string login, string password, Action<LoginResponse> onSuccess, Action<string> onError)
     {
-        public int id;
-        public int cabinet_id;
-        public int classification_id;
-        public string name;
-    }
-    #endregion
-
-    //регистрация новорого пользователя
-    #region Auth Methods
-    public IEnumerator Register(int levelTypeId, int roleId, int specialtyId,
-                              string name, string login, string password,
-                              Action<int> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "auth/register";
-
-        RegisterRequestData requestData = new RegisterRequestData
-        {
-            level_type_id = levelTypeId,
-            role_id = roleId,
-            specialty_id = specialtyId,
-            name = name,
-            login = login,
-            password = password
-        };
-
-        yield return SendRequest(url, "POST", requestData, (responseJson) => {
-            RegisterResponseData response = JsonUtility.FromJson<RegisterResponseData>(responseJson);
-            onSuccess?.Invoke(response.user_id);
-        }, onFailure);
-    }
-
-    //авторизация пользователя
-    public IEnumerator Login(string username, string password,
-                           Action<LoginResponseData> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "auth/login";
-
         WWWForm form = new WWWForm();
         form.AddField("grant_type", "password");
-        form.AddField("username", username);
+        form.AddField("username", login);
         form.AddField("password", password);
         form.AddField("scope", "");
         form.AddField("client_id", "unity_client");
         form.AddField("client_secret", "secret");
 
-        using (UnityWebRequest request = UnityWebRequest.Post(url, form))
-        {
-            request.downloadHandler = new DownloadHandlerBuffer();
-            yield return request.SendWebRequest();
+        using UnityWebRequest request = UnityWebRequest.Post(BASE_URL + "auth/login", form);
+        yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                LoginResponseData response = JsonUtility.FromJson<LoginResponseData>(request.downloadHandler.text);
-                _accessToken = response.access_token;
-                _userId = response.user_id;
-                _userName = response.user_name;
-                _userRole = response.role;
-                onSuccess?.Invoke(response);
-            }
-            else
-            {
-                onFailure?.Invoke(GetErrorMessage(request));
-            }
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            var result = JsonUtility.FromJson<LoginResponse>(request.downloadHandler.text);
+            _accessToken = result.access_token;
+            onSuccess?.Invoke(result);
+        }
+        else
+        {
+            onError?.Invoke(request.error);
         }
     }
 
-    public IEnumerator GetCurrentUserInfo(Action<LoginResponseData> onSuccess, Action<string> onFailure)
+    public IEnumerator Register(UserCreate user, Action<string> onSuccess, Action<string> onError)
     {
-        string url = BASE_API_URL + "auth/me";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            LoginResponseData response = JsonUtility.FromJson<LoginResponseData>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    public static IEnumerator SendTaskResult(string taskName, float result)
-    {
-        string url = "https://gameapi.gd-alt.ru/api/task_results";
-
-        var payload = new TaskResultData
-        {
-            task = taskName,
-            score = result
-        };
-
-        string json = JsonUtility.ToJson(payload);
-
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        string json = JsonUtility.ToJson(user);
+        UnityWebRequest request = new UnityWebRequest(BASE_URL + "auth/register", "POST");
+        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
@@ -210,187 +141,107 @@ public class ApiManager : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("Результат успешно отправлен!");
+            onSuccess?.Invoke(request.downloadHandler.text);
         }
         else
         {
-            Debug.LogWarning("Ошибка при отправке результата: " + request.error);
-        }
-
-        // НИКАКОЙ Time.timeScale = 0 И SceneManager.LoadScene здесь быть НЕ ДОЛЖНО
-    }
-
-    [System.Serializable]
-    public class TaskResultData
-    {
-        public string task;
-        public float score;
-    }
-
-    #endregion
-
-    //получение прогресса пользователя
-    #region Progress Methods
-    public IEnumerator GetUserProgress(Action<ProgressResponseData[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "progress/my";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            ProgressResponseData[] response = JsonHelper.FromJson<ProgressResponseData>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    //сохранение прогресса
-    public IEnumerator SaveProgress(int objectId, int scores,
-                                  Action<ProgressResponseData> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "progress/my";
-        ProgressData requestData = new ProgressData
-        {
-            object_id = objectId,
-            scores = scores
-        };
-
-        yield return SendAuthenticatedRequest(url, "POST", requestData, (responseJson) => {
-            ProgressResponseData response = JsonUtility.FromJson<ProgressResponseData>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-    #endregion
-
-    #region Data Methods
-    public IEnumerator GetCabinets(Action<Cabinet[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "cabinets/";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            Cabinet[] response = JsonHelper.FromJson<Cabinet>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    public IEnumerator GetClassifications(Action<Classification[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "classifications/";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            Classification[] response = JsonHelper.FromJson<Classification>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    public IEnumerator GetLevelTypes(Action<LevelType[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "level-types/";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            LevelType[] response = JsonHelper.FromJson<LevelType>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    public IEnumerator GetRoles(Action<Role[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "roles/";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            Role[] response = JsonHelper.FromJson<Role>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    public IEnumerator GetSpecialties(Action<Specialty[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "specialties/";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            Specialty[] response = JsonHelper.FromJson<Specialty>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-
-    public IEnumerator GetObjects(Action<Object[]> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "objects/";
-        yield return SendAuthenticatedRequest(url, "GET", null, (responseJson) => {
-            Object[] response = JsonHelper.FromJson<Object>(responseJson);
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-    #endregion
-
-    //удаление аккаунта
-    #region Account Management
-    public IEnumerator DeleteAccount(Action<AccountDeleteResponse> onSuccess, Action<string> onFailure)
-    {
-        string url = BASE_API_URL + "account";
-        yield return SendAuthenticatedRequest(url, "DELETE", null, (responseJson) => {
-            AccountDeleteResponse response = JsonUtility.FromJson<AccountDeleteResponse>(responseJson);
-            _accessToken = null;
-            onSuccess?.Invoke(response);
-        }, onFailure);
-    }
-    #endregion
-
-    #region Helper Methods
-    private IEnumerator SendRequest(string url, string method, object requestData,
-                                  Action<string> onSuccess, Action<string> onFailure)
-    {
-        using (UnityWebRequest request = new UnityWebRequest(url, method))
-        {
-            if (requestData != null)
-            {
-                string jsonData = JsonUtility.ToJson(requestData);
-                byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-                request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-                request.SetRequestHeader("Content-Type", "application/json");
-            }
-
-            request.downloadHandler = new DownloadHandlerBuffer();
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                onSuccess?.Invoke(request.downloadHandler.text);
-            }
-            else
-            {
-                onFailure?.Invoke(GetErrorMessage(request));
-            }
+            onError?.Invoke(request.error);
         }
     }
 
-    private IEnumerator SendAuthenticatedRequest(string url, string method, object requestData,
-                                               Action<string> onSuccess, Action<string> onFailure)
+    public IEnumerator GetCurrentUserInfo(Action<string> onSuccess, Action<string> onError)
     {
-        if (string.IsNullOrEmpty(_accessToken))
-        {
-            onFailure?.Invoke("Authorization required");
-            yield break;
-        }
+        UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "auth/me");
+        SetAuthHeader(request);
+        yield return request.SendWebRequest();
 
-        yield return SendRequest(url, method, requestData, onSuccess, onFailure);
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
     }
 
-    private string GetErrorMessage(UnityWebRequest request)
+    public IEnumerator GetAllClassifications(Action<string> onSuccess, Action<string> onError)
     {
-        if (request.responseCode == 401 && !string.IsNullOrEmpty(request.downloadHandler.text))
-        {
-            ApiErrorResponse error = JsonUtility.FromJson<ApiErrorResponse>(request.downloadHandler.text);
-            return error?.detail ?? "Invalid credentials";
-        }
-        return request.error ?? $"HTTP error {request.responseCode}";
-    }
-    #endregion
-}
+        UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "classifications/");
+        SetAuthHeader(request);
+        yield return request.SendWebRequest();
 
-public static class JsonHelper
-{
-    public static T[] FromJson<T>(string json)
-    {
-        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
-        return wrapper.items;
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
     }
 
-    [Serializable]
-    private class Wrapper<T>
+    public IEnumerator CreateClassification(string name, Action<string> onSuccess, Action<string> onError)
     {
-        public T[] items;
+        string url = BASE_URL + "classifications/?name=" + UnityWebRequest.EscapeURL(name);
+        UnityWebRequest request = UnityWebRequest.PostWwwForm(url, "");
+        SetAuthHeader(request);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
+    }
+
+    public IEnumerator DeleteUser(int userId, Action<string> onSuccess, Action<string> onError)
+    {
+        UnityWebRequest request = UnityWebRequest.Delete(BASE_URL + $"users/{userId}");
+        SetAuthHeader(request);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
+    }
+
+    public IEnumerator PostObject(ObjectCreate objData, Action<string> onSuccess, Action<string> onError)
+    {
+        string json = JsonUtility.ToJson(objData);
+        UnityWebRequest request = new UnityWebRequest(BASE_URL + "objects/", "POST");
+        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        SetAuthHeader(request);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
+    }
+
+    public IEnumerator GetUserProgress(Action<string> onSuccess, Action<string> onError)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(BASE_URL + "progress/my/");
+        SetAuthHeader(request);
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
+    }
+
+    public IEnumerator SaveUserProgress(ProgressData data, Action<string> onSuccess, Action<string> onError)
+    {
+        string json = JsonUtility.ToJson(data);
+        UnityWebRequest request = new UnityWebRequest(BASE_URL + "progress/my/", "POST");
+        request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(json));
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        SetAuthHeader(request);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+            onSuccess?.Invoke(request.downloadHandler.text);
+        else
+            onError?.Invoke(request.error);
     }
 }
 
