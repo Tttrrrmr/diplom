@@ -44,7 +44,7 @@ public class SchemaChecker : MonoBehaviour
         resultText.text = $"Правильно расположено блоков: {correctCount} из {total}\nБаллы: {score}";
 
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(2, Mathf.RoundToInt(score),
+            FindObjectOfType<ApiManager>().SaveProgress(1, Mathf.RoundToInt(score),
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
             )
