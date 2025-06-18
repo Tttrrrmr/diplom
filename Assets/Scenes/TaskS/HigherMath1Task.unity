@@ -2151,10 +2151,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1665185859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
+  m_Script: {fileID: 11500000, guid: 816cb715e78c95941b4dfc9fa8f30a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
+  task3SceneName: TaskScene3
 --- !u!1 &1847402237
 GameObject:
   m_ObjectHideFlags: 0

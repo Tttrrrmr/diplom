@@ -39,9 +39,6 @@ EditorBuildSettings:
     path: Assets/Scenes/RegScene.unity
     guid: c167d68e91407534891e2fc1f3d8846e
   - enabled: 1
-    path: Assets/Scenes/TaskScene/TaskScene.unity
-    guid: ca75b5f381c9c1d43aec5810ec073c10
-  - enabled: 1
     path: Assets/Scenes/TaskS/AccessGame.unity
     guid: e7337ea23387fe8498249f25b02a0b26
   - enabled: 1
@@ -104,9 +101,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaskScene/Task1Scene.unity
     guid: 5a8d1fd770e54d34193b6a062dae2c16
-  - enabled: 0
-    path: Assets/Scenes/BdTask.unity
-    guid: 5085de02ae505bf4d8c90220b2fdbafd
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/TaskScene.unity
+    guid: ca75b5f381c9c1d43aec5810ec073c10
   - enabled: 1
     path: Assets/Scenes/TaskScene/TaskScene1.unity
     guid: 8849c5f7b056a6e45b50f45767ddb389

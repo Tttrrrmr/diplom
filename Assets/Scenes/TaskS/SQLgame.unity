@@ -942,10 +942,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371972957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
+  m_Script: {fileID: 11500000, guid: e2014447a3d87464fae3391f07f3ac12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
+  task2SceneName: TaskScene2
 --- !u!1 &1824249884
 GameObject:
   m_ObjectHideFlags: 0
