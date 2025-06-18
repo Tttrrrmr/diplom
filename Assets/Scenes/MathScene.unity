@@ -285,8 +285,9 @@ GameObject:
   - component: {fileID: 935668901}
   - component: {fileID: 935668900}
   - component: {fileID: 935668899}
+  - component: {fileID: 935668902}
   m_Layer: 5
-  m_Name: RiskButton
+  m_Name: MathButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,6 +394,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935668897}
   m_CullTransparentMesh: 1
+--- !u!114 &935668902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935668897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f142de2c13b7b409d8424c40befbee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HigherMathScene: HigherMathematicsTheory
 --- !u!1 &1117086709
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,8 +523,9 @@ GameObject:
   - component: {fileID: 1211774773}
   - component: {fileID: 1211774772}
   - component: {fileID: 1211774771}
+  - component: {fileID: 1211774774}
   m_Layer: 5
-  m_Name: MathButton
+  m_Name: LikelihoodButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,6 +632,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211774769}
   m_CullTransparentMesh: 1
+--- !u!114 &1211774774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211774769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4991b455dd4f3d49a13895b453185cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LikelihoodScene: LikelihoodTheoryScene
 --- !u!1 &1237723664
 GameObject:
   m_ObjectHideFlags: 0

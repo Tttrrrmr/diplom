@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 15003, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: New Windows Profile 1
+  m_EditorClassIdentifier: 
+  m_AssetVersion: 1
+  m_BuildTarget: 19
+  m_Subtarget: 2
+  m_PlatformId: 4e3c793746204150860bf175a9a41a05
+  m_PlatformBuildProfile:
+    rid: 2153498339636150272
+  m_OverrideGlobalSceneList: 0
+  m_Scenes:
+  - m_enabled: 1
+    m_path: Assets/Scenes/SystemScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/AdminScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/AuthScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/AvatarScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/MainScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/BdScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/MathScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/MenuScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/ProgScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/RegScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskScene/TaskScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/AccessGame.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/BlockScene1.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/BlockScene2.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/CompNetworkTask.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/HigherMath1Task.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/HigherMath2Task.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/Likelihood1Task.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/Likelihood2Task.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/ModuleGame.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/ModuleGame2.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/SQLgame.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/SQLgame2.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskS/WireGamee.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/AlgoritmTheoryScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/BasicsBDTheoryScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/CompNetworksTheoryScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/HigherMathematicsTheory.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/LikelihoodTheoryScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/ModulsTheoryScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/Theory/TechnologyBDTheoryScene.unity
+  - m_enabled: 1
+    m_path: Assets/Scenes/TaskScene/Task1Scene.unity
+  m_ScriptingDefines: []
+  m_PlayerSettingsYaml:
+    m_Settings: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 2153498339636150272
+      type: {class: WindowsPlatformSettings, ns: UnityEditor.WindowsStandalone, asm: UnityEditor.WindowsStandalone.Extensions}
+      data:
+        m_Development: 0
+        m_ConnectProfiler: 0
+        m_BuildWithDeepProfilingSupport: 0
+        m_AllowDebugging: 0
+        m_WaitForManagedDebugger: 0
+        m_ManagedDebuggerFixedPort: 0
+        m_ExplicitNullChecks: 0
+        m_ExplicitDivideByZeroChecks: 0
+        m_ExplicitArrayBoundsChecks: 0
+        m_CompressionType: 0
+        m_InstallInBuildFolder: 0
+        m_WindowsBuildAndRunDeployTarget: 0
+        m_Architecture: 0
+        m_CreateSolution: 0
+        m_CopyPDBFiles: 0
+        m_WindowsDevicePortalAddress: 
+        m_WindowsDevicePortalUsername: 

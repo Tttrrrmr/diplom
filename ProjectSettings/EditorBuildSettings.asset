@@ -16,7 +16,7 @@ EditorBuildSettings:
     guid: 0e4a8de85743a5a4da69681fa30bd55c
   - enabled: 1
     path: Assets/Scenes/AuthScene.unity
-    guid: db8158d6a5bc6f242b5666e1682e0c8f
+    guid: a69087bf3c1e52f41ad81b3d72c715d8
   - enabled: 1
     path: Assets/Scenes/AvatarScene.unity
     guid: da00bcc705423c04187e44181f49018d
@@ -37,10 +37,91 @@ EditorBuildSettings:
     guid: 3c2e967c3ad692442a18920f23854db7
   - enabled: 1
     path: Assets/Scenes/RegScene.unity
-    guid: 86a7b670b02eab54886c29fd2bed89ea
+    guid: c167d68e91407534891e2fc1f3d8846e
   - enabled: 1
-    path: Assets/Scenes/TaskScene.unity
+    path: Assets/Scenes/TaskScene/TaskScene.unity
     guid: ca75b5f381c9c1d43aec5810ec073c10
+  - enabled: 1
+    path: Assets/Scenes/TaskS/AccessGame.unity
+    guid: e7337ea23387fe8498249f25b02a0b26
+  - enabled: 1
+    path: Assets/Scenes/TaskS/BlockScene1.unity
+    guid: 31cf82689ca4a9941a086f97240a0a2f
+  - enabled: 1
+    path: Assets/Scenes/TaskS/BlockScene2.unity
+    guid: 97e30c64b9d08df4abe65754a90aeb85
+  - enabled: 1
+    path: Assets/Scenes/TaskS/CompNetworkTask.unity
+    guid: 1777c2af5536d8843aab152dfdd3b84d
+  - enabled: 1
+    path: Assets/Scenes/TaskS/HigherMath1Task.unity
+    guid: 4c1b486c3006fea48b9d6dd6398fe38b
+  - enabled: 1
+    path: Assets/Scenes/TaskS/HigherMath2Task.unity
+    guid: 54e21f8879533ff45aed442744db4601
+  - enabled: 1
+    path: Assets/Scenes/TaskS/Likelihood1Task.unity
+    guid: 39bd54709e5efef428ecf8cfbcb17e79
+  - enabled: 1
+    path: Assets/Scenes/TaskS/Likelihood2Task.unity
+    guid: e07eb7b7a29d7544d92b89ecbe64b17c
+  - enabled: 1
+    path: Assets/Scenes/TaskS/ModuleGame.unity
+    guid: e4006792465927e498c162e6394e4e14
+  - enabled: 1
+    path: Assets/Scenes/TaskS/ModuleGame2.unity
+    guid: 64339cf395ba95f4d8f5ead96d19a7f8
+  - enabled: 1
+    path: Assets/Scenes/TaskS/SQLgame.unity
+    guid: daba1d344a7c9a645b97fddfc48c4741
+  - enabled: 1
+    path: Assets/Scenes/TaskS/SQLgame2.unity
+    guid: a2410aecbf23f3c4c8445546674905a4
+  - enabled: 1
+    path: Assets/Scenes/TaskS/WireGamee.unity
+    guid: fa9616575bd1d1d4381f0a3ef67c998f
+  - enabled: 1
+    path: Assets/Scenes/Theory/AlgoritmTheoryScene.unity
+    guid: 58b5da3547e68f447ac6e00e541d6f0d
+  - enabled: 1
+    path: Assets/Scenes/Theory/BasicsBDTheoryScene.unity
+    guid: c98dc7789cc99694a80e7959e2a5ad36
+  - enabled: 1
+    path: Assets/Scenes/Theory/CompNetworksTheoryScene.unity
+    guid: 6b5a35b7c09dabc48b9653d85dffd7d4
+  - enabled: 1
+    path: Assets/Scenes/Theory/HigherMathematicsTheory.unity
+    guid: 9c583363abc40eb4aa06a3c0e0f83c2c
+  - enabled: 1
+    path: Assets/Scenes/Theory/LikelihoodTheoryScene.unity
+    guid: e0705ddefd916bf44b8d8cbfc2062278
+  - enabled: 1
+    path: Assets/Scenes/Theory/ModulsTheoryScene.unity
+    guid: f6951e113770dfb4c930c65a01dc9f96
+  - enabled: 1
+    path: Assets/Scenes/Theory/TechnologyBDTheoryScene.unity
+    guid: ad1d5be4b822a3e4bbf1b7a0a963ab25
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/Task1Scene.unity
+    guid: 5a8d1fd770e54d34193b6a062dae2c16
+  - enabled: 0
+    path: Assets/Scenes/BdTask.unity
+    guid: 5085de02ae505bf4d8c90220b2fdbafd
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/TaskScene1.unity
+    guid: 8849c5f7b056a6e45b50f45767ddb389
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/TaskScene2.unity
+    guid: e7f616989838b94429c243c41c454741
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/TaskScene3.unity
+    guid: 18eeaa3630679574a91c6f22175dc9d8
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/TaskScene4.unity
+    guid: e3286f91899968f44a508977b2177b22
+  - enabled: 1
+    path: Assets/Scenes/TaskScene/TaskScene5.unity
+    guid: 7ca4d1d7ec2056540892cc5f490c1a0a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
