@@ -85,13 +85,13 @@ public class MatchManagerAccess : MonoBehaviour
     void CheckResults()
     {
         int correct = pairs.Count(p => correctMap.ContainsKey(p.Key.Key) && correctMap[p.Key.Key] == p.Value.Text.text);
-        float score = Mathf.Round(correct * (25f / correctMap.Count));
+        float score = Mathf.Round(correct * (50f / correctMap.Count));
         float time = Time.timeSinceLevelLoad;
 
         resultText.text = $"Правильно: {correct}/{correctMap.Count}\nБаллы: {score}\nВремя: {time:F2} сек";
 
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(5, Mathf.RoundToInt(score),
+            FindObjectOfType<ApiManager>().SaveProgress(3, Mathf.RoundToInt(score), 1,
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
             )

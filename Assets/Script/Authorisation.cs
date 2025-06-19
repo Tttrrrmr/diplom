@@ -92,13 +92,14 @@ public class Authorisation : MonoBehaviour
         {
             var response = JsonUtility.FromJson<LoginResponse>(responseJson);
             PlayerPrefs.SetString("access_token", response.access_token);
+            PlayerSession.AccessToken = response.access_token;
             PlayerPrefs.SetInt("user_id", response.user_id);
             PlayerPrefs.SetString("user_name", response.user_name);
             PlayerPrefs.Save();
 
             // устанавливаем роль по текстовому полю, если есть
-            if (response.role == "admin") PlayerSession.RoleId = 1;
-            else if (response.role == "user") PlayerSession.RoleId = 2;
+            if (response.role == "Администратор") PlayerSession.RoleId = 1;
+            else if (response.role == "Пользователь") PlayerSession.RoleId = 2;
             else PlayerSession.RoleId = 0;
 
             SceneManager.LoadScene("AvatarScene");

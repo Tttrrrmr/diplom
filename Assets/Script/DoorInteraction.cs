@@ -59,6 +59,7 @@ public class DoorInteraction : MonoBehaviour
         {
             int role = PlayerSession.RoleId;
             Debug.Log("Роль игрока: " + role);
+            Debug.Log($"Токен: {PlayerSession.AccessToken}");
 
             uiOpen = true;
 

@@ -46,6 +46,7 @@ public class ApiManager : MonoBehaviour
     {
         public int object_id;
         public int scores;
+        public int task_number;
     }
 
     [Serializable]
@@ -143,6 +144,7 @@ public class ApiManager : MonoBehaviour
             {
                 LoginResponseData response = JsonUtility.FromJson<LoginResponseData>(request.downloadHandler.text);
                 _accessToken = response.access_token;
+                PlayerSession.AccessToken = _accessToken;
                 _userId = response.user_id;
                 _userName = response.user_name;
                 _userRole = response.role;
@@ -158,7 +160,7 @@ public class ApiManager : MonoBehaviour
     // Получение прогресса пользователя
     public IEnumerator GetUserProgress(Action<ProgressResponseData[]> onSuccess, Action<string> onFailure)
     {
-        if (string.IsNullOrEmpty(_accessToken))
+        if (string.IsNullOrEmpty(PlayerSession.AccessToken))
         {
             onFailure?.Invoke("Authorization required");
             yield break;
@@ -169,7 +171,7 @@ public class ApiManager : MonoBehaviour
         using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Authorization", "Bearer " + _accessToken);
+            request.SetRequestHeader("Authorization", "Bearer " + PlayerSession.AccessToken);
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
@@ -185,50 +187,56 @@ public class ApiManager : MonoBehaviour
     }
 
     // Сохранение прогресса
-    public IEnumerator SaveProgress(int objectId, int scores,
-                                  Action<ProgressResponseData> onSuccess, Action<string> onFailure)
+    public IEnumerator SaveProgress(int objectId, int scores, int taskNumber,
+                              Action<ProgressResponseData> onSuccess, Action<string> onFailure)
     {
-        if (string.IsNullOrEmpty(_accessToken))
+        if (string.IsNullOrEmpty(PlayerSession.AccessToken))
         {
             onFailure?.Invoke("Authorization required");
             yield break;
         }
 
-        string url = BASE_API_URL + "progress/my";
+        string url = BASE_API_URL + "progress/my/";
 
         ProgressRequestData requestData = new ProgressRequestData
         {
             object_id = objectId,
-            scores = scores
+            scores = scores,
+            task_number = taskNumber
         };
 
         string jsonData = JsonUtility.ToJson(requestData);
+        Debug.Log("Sending JSON: " + jsonData);
 
-        using (UnityWebRequest request = new UnityWebRequest(url, "POST"))
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer " + PlayerSession.AccessToken);
+        request.SetRequestHeader("accept", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success || request.responseCode == 201)
         {
-            byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
-            request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json");
-            request.SetRequestHeader("Authorization", "Bearer " + _accessToken);
-            yield return request.SendWebRequest();
-
-            if (request.result == UnityWebRequest.Result.Success)
-            {
-                ProgressResponseData response = JsonUtility.FromJson<ProgressResponseData>(request.downloadHandler.text);
-                onSuccess?.Invoke(response);
-            }
-            else
-            {
-                onFailure?.Invoke(GetErrorMessage(request));
-            }
+            ProgressResponseData response = JsonUtility.FromJson<ProgressResponseData>(request.downloadHandler.text);
+            Debug.Log("Успех: " + request.downloadHandler.text);
+            onSuccess?.Invoke(response);
+        }
+        else
+        {
+            Debug.LogWarning("Ошибка: " + request.responseCode + " - " + request.downloadHandler.text);
+            Debug.LogWarning($"{request.method}");
+            onFailure?.Invoke(GetErrorMessage(request));
         }
     }
 
     // Удаление аккаунта
     public IEnumerator DeleteAccount(Action<AccountDeleteResponse> onSuccess, Action<string> onFailure)
     {
-        if (string.IsNullOrEmpty(_accessToken))
+        if (string.IsNullOrEmpty(PlayerSession.AccessToken))
         {
             onFailure?.Invoke("Authorization required");
             yield break;
@@ -239,7 +247,7 @@ public class ApiManager : MonoBehaviour
         using (UnityWebRequest request = UnityWebRequest.Delete(url))
         {
             request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Authorization", "Bearer " + _accessToken);
+            request.SetRequestHeader("Authorization", "Bearer " + PlayerSession.AccessToken);
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.Success)
@@ -247,7 +255,7 @@ public class ApiManager : MonoBehaviour
                 AccountDeleteResponse response = JsonUtility.FromJson<AccountDeleteResponse>(request.downloadHandler.text);
                 if (response.status == "success")
                 {
-                    _accessToken = null;
+                    PlayerSession.AccessToken = null;
                     onSuccess?.Invoke(response);
                 }
                 else

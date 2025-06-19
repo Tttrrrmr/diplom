@@ -1001,6 +1001,8 @@ GameObject:
   - component: {fileID: 1201307236}
   - component: {fileID: 1201307235}
   - component: {fileID: 1201307234}
+  - component: {fileID: 1201307238}
+  - component: {fileID: 1201307237}
   - component: {fileID: 1201307233}
   m_Layer: 5
   m_Name: Canvas
@@ -1098,6 +1100,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1201307237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201307232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ca37fc5f2d1114e8bffe970615ae34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1201307238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201307232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994161858a6df9a46991d2659cad5630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnswerField: {fileID: 477362188}
+  ResultText: {fileID: 1340998965}
+  SaveButton: {fileID: 134683270}
 --- !u!1 &1340998963
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,10 +1694,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1994801814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f95cc61a1b9678439023ab8dec8d2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
+  task5SceneName: TaskScene4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
