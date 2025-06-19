@@ -670,7 +670,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424158972}
-  - component: {fileID: 424158973}
+  - component: {fileID: 424158975}
   - component: {fileID: 424158974}
   m_Layer: 0
   m_Name: UiElementManager
@@ -694,7 +694,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &424158973
+--- !u!114 &424158974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424158970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ca37fc5f2d1114e8bffe970615ae34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &424158975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -709,25 +721,8 @@ MonoBehaviour:
   submitButton: {fileID: 1139470813}
   resultText: {fileID: 1638668303}
   maxScore: 25
-  taskId: 4
-  correctElements:
-  - TextBox
-  - TextBlock
-  - ComboBox
-  - Button
-  - DatePicker
---- !u!114 &424158974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424158970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ca37fc5f2d1114e8bffe970615ae34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  taskId: 1
+  correctElements: []
 --- !u!1 &549304881
 GameObject:
   m_ObjectHideFlags: 0

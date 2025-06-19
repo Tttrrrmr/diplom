@@ -119,6 +119,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TaskScene/TaskScene5.unity
     guid: 7ca4d1d7ec2056540892cc5f490c1a0a
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultProgScene.unity
+    guid: eaa33e5415ce667438494d268bae3015
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

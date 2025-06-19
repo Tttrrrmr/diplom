@@ -14,7 +14,7 @@ public class UIElementManager : MonoBehaviour
     public float maxScore = 25f;
 
     [Header("ID задания для API")]
-    public int taskId = 3;
+    public int taskId = 1;
 
     [Header("Правильные элементы")]
     public List<string> correctElements;
@@ -51,7 +51,7 @@ public class UIElementManager : MonoBehaviour
 
         LockAllSelectableElements();
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(taskId, Mathf.RoundToInt(score),
+            FindObjectOfType<ApiManager>().SaveProgress(2, Mathf.RoundToInt(score), taskId,
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
     )

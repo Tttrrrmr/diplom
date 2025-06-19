@@ -91,7 +91,7 @@ public class MatchManager2 : MonoBehaviour
         resultText.text = $"Правильно: {correct}/{correctMap.Count}\nБаллы: {score}\nВремя: {time:F2} сек";
 
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(4, Mathf.RoundToInt(score),
+            FindObjectOfType<ApiManager>().SaveProgress(1, Mathf.RoundToInt(score), 2,
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
             )

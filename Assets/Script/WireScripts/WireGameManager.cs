@@ -107,7 +107,7 @@ public class WireGameManager : MonoBehaviour
             resultText.text = $"Успех! Время: {time:F2} сек\nБаллы: {score}";
 
             StartCoroutine(
-                FindObjectOfType<ApiManager>().SaveProgress(8, score,
+                FindObjectOfType<ApiManager>().SaveProgress(7, score, 2,
                     onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                     onFailure: err => Debug.LogError("Ошибка: " + err)
                 )
