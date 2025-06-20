@@ -1,142 +1,93 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using TMPro;
+using UnityEngine.UI;
+using System;
 
 public class ProgressReportProg : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("UI")]
     public GameObject rowPrefab;
-    public Transform tableContentParent;
+    public Transform tableContent;
+    public Button loadButton; // <- кнопка "Загрузить"
+    public TMP_Text statusText;
 
-    [Header("Config")]
-    public int objectId = 5;
-    public string subjectName = "Основы алгоритмизации и программирования";
-
-    private const string BASE_API_URL = "https://gameapi.gd-alt.ru/api/";
-    private Dictionary<int, string> _userNames = new();
-
-    [Serializable]
-    public class User
-    {
-        public int id;
-        public string name;
-    }
-
-    [Serializable]
-    public class ProgressRecord
-    {
-        public int id;
-        public int user_id;
-        public int object_id;
-        public int task_number;
-        public int scores;
-    }
+    [Header("Настройки предмета")]
+    public int objectId;
+    public string subjectName;
 
     private void Start()
     {
-        StartCoroutine(LoadProgressTable(objectId));
+        if (loadButton != null)
+            loadButton.onClick.AddListener(OnLoadClicked);
+
+        if (statusText != null)
+            statusText.text = "Нажмите 'Загрузить', чтобы показать результаты.";
     }
 
-    IEnumerator LoadProgressTable(int objectId)
+    private void OnLoadClicked()
     {
-        yield return StartCoroutine(LoadAllUsers(() =>
-        {
-            StartCoroutine(GetProgressByObject(objectId));
-        }));
-    }
-
-    IEnumerator LoadAllUsers(Action onSuccess)
-    {
-        string url = BASE_API_URL + "users";
-        UnityWebRequest request = UnityWebRequest.Get(url);
-        request.SetRequestHeader("Authorization", "Bearer " + PlayerSession.AccessToken);
-        request.SetRequestHeader("accept", "application/json");
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            string wrapped = "{\"items\":" + request.downloadHandler.text + "}";
-            User[] users = JsonHelper.FromJson<User>(wrapped);
-            _userNames.Clear();
-
-            foreach (var user in users)
-                _userNames[user.id] = user.name;
-
-            onSuccess?.Invoke();
-        }
-        else
-        {
-            Debug.LogError("Не удалось загрузить пользователей: " + request.error);
-        }
+        StartCoroutine(GetProgressByObject(objectId));
     }
 
     IEnumerator GetProgressByObject(int objectId)
     {
-        string url = BASE_API_URL + $"progress/object/{objectId}";
-        UnityWebRequest request = UnityWebRequest.Get(url);
-        request.SetRequestHeader("Authorization", "Bearer " + PlayerSession.AccessToken);
-        request.SetRequestHeader("accept", "application/json");
+        string token = PlayerSession.AccessToken;
 
+        if (string.IsNullOrEmpty(token))
+        {
+            Debug.LogError("❌ Токен отсутствует!");
+            statusText.text = "Вы не авторизованы.";
+            yield break;
+        }
+
+        string url = $"https://gameapi.gd-alt.ru/api/progress/object/{objectId}";
+        UnityWebRequest request = UnityWebRequest.Get(url);
+        request.SetRequestHeader("Authorization", "Bearer " + token);
         yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.Success)
+        if (request.result != UnityWebRequest.Result.Success)
         {
-            string wrapped = "{\"items\":" + request.downloadHandler.text + "}";
-            ProgressRecord[] records = JsonHelper.FromJson<ProgressRecord>(wrapped);
-
-            // ⬇ Группировка по пользователям, суммируются все задания
-            Dictionary<int, int> userTotalScores = new();
-
-            foreach (var record in records)
-            {
-                // Проверяем только нужный объект (на всякий случай)
-                if (record.object_id != objectId) continue;
-
-                if (!userTotalScores.ContainsKey(record.user_id))
-                    userTotalScores[record.user_id] = 0;
-
-                userTotalScores[record.user_id] += record.scores;
-            }
-
-            // Очищаем таблицу
-            foreach (Transform child in tableContentParent)
-                Destroy(child.gameObject);
-
-            // Добавляем строки
-            foreach (var kvp in userTotalScores)
-            {
-                string userName = _userNames.ContainsKey(kvp.Key) ? _userNames[kvp.Key] : $"User {kvp.Key}";
-                string score = kvp.Value.ToString();
-
-                AddRowToTable(userName, subjectName, score);
-            }
+            Debug.LogError("❌ Ошибка загрузки данных: " + request.error);
+            statusText.text = "Ошибка загрузки данных.";
+            yield break;
         }
-        else
+
+        ProgressResponseList responseList = JsonUtility.FromJson<ProgressResponseList>("{\"items\":" + request.downloadHandler.text + "}");
+
+        foreach (Transform child in tableContent)
+            Destroy(child.gameObject);
+
+        foreach (var record in responseList.items)
         {
-            Debug.LogError("Ошибка загрузки прогресса: " + request.downloadHandler.text);
+            AddRowToTable(record);
         }
+
+        statusText.text = $"Загружено записей: {responseList.items.Length}";
     }
 
-
-    void AddRowToTable(string user, string subject, string score)
+    void AddRowToTable(ApiManager.ProgressResponseData record)
     {
-        GameObject row = Instantiate(rowPrefab, tableContentParent);
-        TextMeshProUGUI[] texts = row.GetComponentsInChildren<TextMeshProUGUI>();
+        GameObject row = Instantiate(rowPrefab, tableContent);
+        TMP_Text[] texts = row.GetComponentsInChildren<TMP_Text>();
 
         if (texts.Length >= 3)
         {
-            texts[0].text = user;
-            texts[1].text = subject;
-            texts[2].text = score;
-        }
-        else
-        {
-            Debug.LogWarning("RowPrefab должен содержать три TextMeshProUGUI компонента.");
+            // Имя: если текущий пользователь, то по имени, иначе по ID
+            string name = (record.user_id == PlayerSession.UserId)
+                ? PlayerSession.UserName
+                : $"Пользователь {record.user_id}";
+
+            texts[0].text = name;
+            texts[1].text = subjectName;
+            texts[2].text = record.scores.ToString();
         }
     }
-}
 
+    [Serializable]
+    public class ProgressResponseList
+    {
+        public ApiManager.ProgressResponseData[] items;
+    }
+}

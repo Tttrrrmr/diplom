@@ -1,5 +1,9 @@
+using UnityEngine;
+
 public static class PlayerSession
 {
-    public static int RoleId = 1; // 1 = админ, 2 = пользователь, 0 = нет роли
-    public static string AccessToken = "";
+    public static string AccessToken;
+    public static int UserId;
+    public static string UserName;
+    public static int RoleId;
 }
