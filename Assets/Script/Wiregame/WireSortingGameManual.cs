@@ -76,7 +76,7 @@ public class WireSortingGameManual : MonoBehaviour
         resultText.text = (correct ? "Правильно!" : "Неправильно!") + $" Время: {time} сек. Баллы: {score}";
 
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(7, Mathf.RoundToInt(score), 2,
+            FindObjectOfType<ApiManager>().SaveProgress(13, Mathf.RoundToInt(score), 2,
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
             )

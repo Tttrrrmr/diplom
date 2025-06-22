@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
+  taskSceneName: TaskScene1
 --- !u!114 &74183667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 134836075}
   - component: {fileID: 134836074}
-  - component: {fileID: 134836073}
+  - component: {fileID: 134836076}
   m_Layer: 0
   m_Name: ReportManager
   m_TagString: Untagged
@@ -271,26 +271,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &134836073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134836072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1df6583d538c50469177e2e07aefab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rowPrefab: {fileID: 5962458722276647406, guid: a3fe0cf55d78ff74abf478c8c7267c75, type: 3}
-  headerPrefab: {fileID: 8437732383207090102, guid: c15ac55e6254d7947a3062dcae4c972d, type: 3}
-  tableContent: {fileID: 1504179895}
-  loadButton: {fileID: 1481926192}
-  statusText: {fileID: 1938441815}
-  objectIds: 0100000002000000
-  subjectName: "\u041E\u0441\u043D\u043E\u0432\u044B \u0430\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u0438
-    \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"
 --- !u!114 &134836074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +298,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &134836076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 134836072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1df6583d538c50469177e2e07aefab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rowPrefab: {fileID: 5962458722276647406, guid: a3fe0cf55d78ff74abf478c8c7267c75, type: 3}
+  headerPrefab: {fileID: 8437732383207090102, guid: c15ac55e6254d7947a3062dcae4c972d, type: 3}
+  tableContent: {fileID: 1504179895}
+  loadButton: {fileID: 1481926192}
+  statusText: {fileID: 1938441815}
+  objectIds: 0300000004000000
+  subjectName: h
 --- !u!1 &173332173
 GameObject:
   m_ObjectHideFlags: 0
@@ -1470,7 +1469,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1142021417}
   m_HandleRect: {fileID: 1142021416}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

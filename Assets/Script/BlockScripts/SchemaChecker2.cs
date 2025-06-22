@@ -39,12 +39,12 @@ public class SchemaChecker2 : MonoBehaviour
         }
 
         int total = correctOrder.Count;
-        float score = Mathf.Round((correctCount / (float)total) * 25f * 100f) / 100f;
+        int score = Mathf.RoundToInt((correctCount / (float)total) * 25f);
 
         resultText.text = $"Правильно расположено блоков: {correctCount} из {total}\nБаллы: {score}";
 
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(1, Mathf.RoundToInt(score), 2,
+            FindObjectOfType<ApiManager>().SaveProgress(2, score, 1,
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
             )

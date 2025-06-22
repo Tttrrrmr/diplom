@@ -721,8 +721,13 @@ MonoBehaviour:
   submitButton: {fileID: 1139470813}
   resultText: {fileID: 1638668303}
   maxScore: 25
-  taskId: 1
-  correctElements: []
+  taskId: 3
+  correctElements:
+  - TextBox
+  - TextBlock
+  - ComboBox
+  - Button
+  - DatePicker
 --- !u!1 &549304881
 GameObject:
   m_ObjectHideFlags: 0

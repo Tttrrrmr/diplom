@@ -5,9 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class UIElementManager : MonoBehaviour
+public class UIElementManager2 : MonoBehaviour
 {
-    public static UIElementManager Instance;
+    public static UIElementManager2 Instance;
 
     public Button submitButton;
     public TMP_Text resultText;
