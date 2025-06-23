@@ -51,7 +51,7 @@ public class UIElementManager : MonoBehaviour
 
         LockAllSelectableElements();
         StartCoroutine(
-            FindObjectOfType<ApiManager>().SaveProgress(taskId, Mathf.RoundToInt(score), 1,
+            FindObjectOfType<ApiManager>().SaveProgress(2, Mathf.RoundToInt(score), taskId,
                 onSuccess: data => Debug.Log("Сохранено: " + data.scores),
                 onFailure: err => Debug.LogError("Ошибка: " + err)
     )
