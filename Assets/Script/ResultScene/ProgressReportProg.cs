@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 public class ProgressReportProg : MonoBehaviour
 {
@@ -12,11 +13,11 @@ public class ProgressReportProg : MonoBehaviour
     public GameObject rowPrefab;
     public GameObject headerPrefab;
     public Transform tableContent;
-    public Button loadButton; // <- кнопка "Загрузить"
+    public Button loadButton;
     public TMP_Text statusText;
 
     [Header("Настройки предмета")]
-    public int[] objectIds; // ← список ID заданий
+    public int objectId; // ← Один предмет
     public string subjectName;
 
     private void Start()
@@ -35,17 +36,14 @@ public class ProgressReportProg : MonoBehaviour
 
     private void OnLoadClicked()
     {
-        // Удаляем все строки, кроме заголовка (оставляем первый элемент)
+        // Удаляем все строки кроме заголовка
         for (int i = tableContent.childCount - 1; i > 0; i--)
         {
             Destroy(tableContent.GetChild(i).gameObject);
         }
 
-        // Загружаем новые строки
-        foreach (int id in objectIds)
-            StartCoroutine(GetProgressByObject(id));
+        StartCoroutine(GetProgressByObject(objectId));
     }
-
 
     IEnumerator GetProgressByObject(int objectId)
     {
@@ -65,52 +63,47 @@ public class ProgressReportProg : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError($"❌ Ошибка загрузки задания {objectId}: {request.error}");
+            Debug.LogError($"❌ Ошибка загрузки: {request.error}");
             statusText.text = $"Ошибка загрузки ID {objectId}";
             yield break;
         }
 
-        ProgressResponseList responseList = JsonUtility.FromJson<ProgressResponseList>("{\"items\":" + request.downloadHandler.text + "}");
+        var responseList = JsonUtility.FromJson<ProgressResponseList>("{\"items\":" + request.downloadHandler.text + "}");
 
-        foreach (var record in responseList.items.OrderBy(r => r.user_id).ThenBy(r => r.object_id))
+        // Группировка: user_id → сумма scores по task_number
+        var grouped = responseList.items
+            .Where(r => r.object_id == objectId)
+            .GroupBy(r => r.user_id)
+            .Select(g => new
+            {
+                userId = g.Key,
+                totalScore = g.Sum(r => r.scores)
+            })
+            .OrderBy(x => x.userId);
+
+        foreach (var entry in grouped)
         {
-            AddRowToTable(record);
+            AddRow(entry.userId, subjectName, entry.totalScore);
         }
 
         statusText.text = $"Обновлено: {DateTime.Now:T}";
     }
 
-    void AddRowToTable(ApiManager.ProgressResponseData record)
+    void AddRow(int userId, string subject, int score)
     {
         GameObject row = Instantiate(rowPrefab, tableContent);
         TMP_Text[] texts = row.GetComponentsInChildren<TMP_Text>();
 
         if (texts.Length >= 3)
         {
-            string name = (record.user_id == PlayerSession.UserId)
+            string name = (userId == PlayerSession.UserId)
                 ? PlayerSession.UserName
-                : $"Пользователь {record.user_id}";
+                : $"Пользователь {userId}";
 
             texts[0].text = name;
-            texts[1].text = SubjectNameById(record.object_id);
-            texts[2].text = record.scores.ToString();
+            texts[1].text = subject;
+            texts[2].text = score.ToString();
         }
-    }
-
-    string SubjectNameById(int id)
-    {
-        return id switch
-        {
-            1 => "Основы алгоритмизации и программирования",
-            2 => "Разработка программных модулей",
-            3 => "UI Элементы",
-            4 => "Блок-схемы",
-            5 => "Провода",
-            6 => "Циклы",
-            7 => "Операторы",
-            8 => "Сигналы",
-            _ => $"Предмет {id}"
-        };
     }
 
     [Serializable]

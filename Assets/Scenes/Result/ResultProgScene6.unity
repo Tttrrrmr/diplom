@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
+  taskSceneName: TaskScene4
 --- !u!114 &74183667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,9 +288,10 @@ MonoBehaviour:
   tableContent: {fileID: 1504179895}
   loadButton: {fileID: 1481926192}
   statusText: {fileID: 1938441815}
-  objectId: 1
-  subjectName: "\u041E\u0441\u043D\u043E\u0432\u044B \u0430\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u0438
-    \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"
+  objectId: 6
+  subjectName: "\u0422\u0435\u043E\u0440\u0438\u044F \u0432\u0435\u0440\u043E\u044F\u0442\u043D\u043E\u0441\u0442\u0435\u0439
+    \u0438 \u043C\u0430\u0442\u0435\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F
+    \u0441\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0430"
 --- !u!114 &134836074
 MonoBehaviour:
   m_ObjectHideFlags: 0
