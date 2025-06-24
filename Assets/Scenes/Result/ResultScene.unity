@@ -315,8 +315,9 @@ MonoBehaviour:
   tableContent: {fileID: 1504179895}
   loadButton: {fileID: 1481926192}
   statusText: {fileID: 1938441815}
-  objectIds: 0300000004000000
-  subjectName: h
+  objectId: 2
+  subjectName: "\u0420\u0430\u0437\u0440\u0430\u0431\u043E\u0442\u043A\u0430 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u043D\u044B\u0445
+    \u043C\u043E\u0434\u0443\u043B\u0435\u0439"
 --- !u!1 &173332173
 GameObject:
   m_ObjectHideFlags: 0

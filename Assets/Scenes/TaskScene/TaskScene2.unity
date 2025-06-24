@@ -869,10 +869,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1663784383}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 1becfbe1a70b1e7479d6c928dd7a8b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   resultTechnologyScene: ResultTechnologyScene
+=======
+  m_Script: {fileID: 11500000, guid: 2f011fa6ee2492a4caa397478d3f3f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resultProgScene: ResultProgScene4
+>>>>>>> fbdb7e10ac66b3204f0b6794bca22d9d4bbfe687
 --- !u!1 &1997142290
 GameObject:
   m_ObjectHideFlags: 0
