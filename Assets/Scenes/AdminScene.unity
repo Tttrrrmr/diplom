@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 2059553231}
   - component: {fileID: 2059553230}
   - component: {fileID: 2059553229}
+  - component: {fileID: 2059553232}
   m_Layer: 5
   m_Name: AdminButton
   m_TagString: Untagged
@@ -693,6 +694,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059553227}
   m_CullTransparentMesh: 1
+--- !u!114 &2059553232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059553227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7662e8f343d4f0d44bc3919bf9aea59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resultSceneName: ResultScene
 --- !u!1 &2110177154
 GameObject:
   m_ObjectHideFlags: 0

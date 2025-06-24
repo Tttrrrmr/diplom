@@ -109,7 +109,7 @@ EditorBuildSettings:
     guid: 8849c5f7b056a6e45b50f45767ddb389
   - enabled: 1
     path: Assets/Scenes/TaskScene/TaskScene2.unity
-    guid: e7f616989838b94429c243c41c454741
+    guid: f5f17d4f3f28df34e81c529300688794
   - enabled: 1
     path: Assets/Scenes/TaskScene/TaskScene3.unity
     guid: 18eeaa3630679574a91c6f22175dc9d8
@@ -120,23 +120,68 @@ EditorBuildSettings:
     path: Assets/Scenes/TaskScene/TaskScene5.unity
     guid: 7ca4d1d7ec2056540892cc5f490c1a0a
   - enabled: 1
+    path: Assets/Scenes/Result/ResultBasicScene.unity
+    guid: e818ec348a7687244b443a0c1948f0ac
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultLikelihoodScene.unity
+    guid: 47e34e4a00652b440abb9499b2c19cc3
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultMathScene.unity
+    guid: 2b404422c492a0940b7f8fbcc3577729
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultModuleScene.unity
+    guid: 79f11f6e6f54bd04a93215b78098264b
+  - enabled: 1
     path: Assets/Scenes/Result/ResultProgScene.unity
     guid: eaa33e5415ce667438494d268bae3015
   - enabled: 1
-    path: Assets/Scenes/Result/ResultProgScene3.unity
+    path: Assets/Scenes/Result/ResultScene.unity
     guid: abd9ce2bd6a300c45bce6e0a635714aa
   - enabled: 1
-    path: Assets/Scenes/Result/ResultProgScene4.unity
-    guid: 79f11f6e6f54bd04a93215b78098264b
+    path: Assets/Scenes/Result/ResultSystemScene.unity
+    guid: 0b3f470641c16b74e89587344fa76693
   - enabled: 1
-    path: Assets/Scenes/Result/ResultProgScene5.unity
-    guid: 5cdb896050c0f0f4fa8660c1a7b62750
+    path: Assets/Scenes/Result/ResultTechnologyScene.unity
+    guid: 9995c02011faa7647881a37fa3439dfa
   - enabled: 1
-    path: Assets/Scenes/Result/ResultProgScene6.unity
-    guid: 781a260009120944298a13a105cc344a
+    path: Assets/Scenes/Hint/AdditionHintScene.unity
+    guid: 47972d2b619869e4ca9c63d489a0ae4f
   - enabled: 1
-    path: Assets/Scenes/Result/ResultProgScene7.unity
-    guid: 2ada3756293c9d24585fc64687f43e67
+    path: Assets/Scenes/Hint/AlgoritmHintScene.unity
+    guid: 220dafc730099f74384a31df54f2fcd8
+  - enabled: 1
+    path: Assets/Scenes/Hint/AlgoritmHintScene1.unity
+    guid: 6c0797813b9af5b4e98db56a54674b12
+  - enabled: 1
+    path: Assets/Scenes/Hint/BasicHintScene.unity
+    guid: e9ad392b2526ddc438ef6440252a95f3
+  - enabled: 1
+    path: Assets/Scenes/Hint/IPHintScene.unity
+    guid: be7682c7dd506e545a14150bb71702b4
+  - enabled: 1
+    path: Assets/Scenes/Hint/LikelihoodHintScene.unity
+    guid: 0a4f955e4807587498d57fd977c78315
+  - enabled: 1
+    path: Assets/Scenes/Hint/LikelihoodHintScene1.unity
+    guid: fc0648a7898af3348afae2fa5a06aaad
+  - enabled: 1
+    path: Assets/Scenes/Hint/ModuleHintScene.unity
+    guid: 6d526c1803653154994cb0ca60040a0b
+  - enabled: 1
+    path: Assets/Scenes/Hint/ModuleHintScene1.unity
+    guid: e402f1c51e2947249a0e554f0825e31d
+  - enabled: 1
+    path: Assets/Scenes/Hint/MulHintScene.unity
+    guid: ffb5657aa55482943844810ce20dcce5
+  - enabled: 1
+    path: Assets/Scenes/Hint/TechnologyHintScene.unity
+    guid: 42bc0cc4ec500544e9ae880f8f66b845
+  - enabled: 1
+    path: Assets/Scenes/Hint/TechnologyHintScene1.unity
+    guid: e18bcd29c30a429479e8977add11adc5
+  - enabled: 1
+    path: Assets/Scenes/Hint/WireHintScene.unity
+    guid: f3a99837d88fc5847b045ad76bfd9319
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

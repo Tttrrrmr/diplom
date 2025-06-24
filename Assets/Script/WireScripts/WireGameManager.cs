@@ -104,7 +104,7 @@ public class WireGameManager : MonoBehaviour
             double time = timer.Elapsed.TotalSeconds;
 
             int score = CalculateScore(time);
-            resultText.text = $"Успех! Время: {time:F2} сек\nБаллы: {score}";
+            resultText.text = $"Успех! Время: {time:F2} сек\n Баллы: {score}";
 
             StartCoroutine(
                 FindObjectOfType<ApiManager>().SaveProgress(7, score, 2,

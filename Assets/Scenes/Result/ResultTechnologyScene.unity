@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 74183669}
   - component: {fileID: 74183668}
   - component: {fileID: 74183667}
-  - component: {fileID: 74183666}
+  - component: {fileID: 74183670}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -158,19 +158,6 @@ RectTransform:
   m_AnchoredPosition: {x: 742.9509, y: -452.77008}
   m_SizeDelta: {x: 606.529, y: 175.34}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &74183666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74183664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
 --- !u!114 &74183667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +240,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74183664}
   m_CullTransparentMesh: 1
+--- !u!114 &74183670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74183664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2014447a3d87464fae3391f07f3ac12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task2SceneName: TaskScene2
 --- !u!1 &134836072
 GameObject:
   m_ObjectHideFlags: 0

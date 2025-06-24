@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 74183669}
   - component: {fileID: 74183668}
   - component: {fileID: 74183667}
-  - component: {fileID: 74183666}
+  - component: {fileID: 74183670}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -158,19 +158,6 @@ RectTransform:
   m_AnchoredPosition: {x: 742.9509, y: -452.77008}
   m_SizeDelta: {x: 606.529, y: 175.34}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &74183666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74183664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e9a9d1646f90b749bdce9a93e193c70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  taskSceneName: TaskScene
 --- !u!114 &74183667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +240,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74183664}
   m_CullTransparentMesh: 1
+--- !u!114 &74183670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 74183664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de88c5c0896f5440ac12a6dc85a8fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  task1SceneName: Task1Scene
 --- !u!1 &134836072
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,29 +271,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<<< HEAD:Assets/Scenes/Result/ResultBasicScene.unity
-========
---- !u!114 &134836073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134836072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1df6583d538c50469177e2e07aefab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rowPrefab: {fileID: 5962458722276647406, guid: a3fe0cf55d78ff74abf478c8c7267c75, type: 3}
-  headerPrefab: {fileID: 8437732383207090102, guid: c15ac55e6254d7947a3062dcae4c972d, type: 3}
-  tableContent: {fileID: 1504179895}
-  loadButton: {fileID: 1481926192}
-  statusText: {fileID: 1938441815}
-  objectId: 1
-  subjectName: "\u041E\u0441\u043D\u043E\u0432\u044B \u0430\u043B\u0433\u043E\u0440\u0438\u0442\u043C\u0438\u0437\u0430\u0446\u0438\u0438
-    \u0438 \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F"
->>>>>>>> fbdb7e10ac66b3204f0b6794bca22d9d4bbfe687:Assets/Scenes/Result/ResultProgScene2.unity
 --- !u!114 &134836074
 MonoBehaviour:
   m_ObjectHideFlags: 0

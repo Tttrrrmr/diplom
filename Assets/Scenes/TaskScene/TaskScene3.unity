@@ -702,10 +702,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1182129676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f011fa6ee2492a4caa397478d3f3f49, type: 3}
+  m_Script: {fileID: 11500000, guid: 616dda8fc3effc34d8a11d1445d39f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resultProgScene: ResultProgScene5
+  resultMathScene: ResultMathScene
 --- !u!1 &1530998744
 GameObject:
   m_ObjectHideFlags: 0
