@@ -6,4 +6,5 @@ public static class PlayerSession
     public static int UserId;
     public static string UserName;
     public static int RoleId;
+   
 }

@@ -8,7 +8,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class ProgressReportProg : MonoBehaviour
+
+public class ProgressReportModule : MonoBehaviour
 {
     [Header("UI")]
     public GameObject rowPrefab;
@@ -18,8 +19,8 @@ public class ProgressReportProg : MonoBehaviour
     public TMP_Text statusText;
 
     [Header("Настройки предмета")]
-    public int objectId = 1; // ← ID ПРЕДМЕТА
-    public string subjectName = "Основы алгоритмизации и программирования";
+    public int objectId = 2; // ← ID ПРЕДМЕТА
+    public string subjectName = "Разработка программных модулей";
 
     private Dictionary<int, int> userScores = new();
     private Dictionary<int, string> userNames = new();

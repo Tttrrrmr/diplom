@@ -123,8 +123,26 @@ EditorBuildSettings:
     path: Assets/Scenes/Result/ResultProgScene.unity
     guid: eaa33e5415ce667438494d268bae3015
   - enabled: 1
-    path: Assets/Scenes/Result/ResultProgScene3.unity
+    path: Assets/Scenes/Result/ResultScene.unity
     guid: abd9ce2bd6a300c45bce6e0a635714aa
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultBasicScene.unity
+    guid: 20d19da6a8eb60345b6ac6d32f2846f8
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultLikelihoodScene.unity
+    guid: 47e34e4a00652b440abb9499b2c19cc3
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultMathScene.unity
+    guid: 2b404422c492a0940b7f8fbcc3577729
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultModuleScene.unity
+    guid: 79f11f6e6f54bd04a93215b78098264b
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultSystemScene.unity
+    guid: 0b3f470641c16b74e89587344fa76693
+  - enabled: 1
+    path: Assets/Scenes/Result/ResultTechnologyScene.unity
+    guid: 9995c02011faa7647881a37fa3439dfa
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
