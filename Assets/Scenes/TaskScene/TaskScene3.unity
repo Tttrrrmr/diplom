@@ -383,10 +383,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 190973496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48f142de2c13b7b409d8424c40befbee, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b760d7594327f3409bbf10560619cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HigherMathScene: HigherMathematicsTheory
+  paperScene: MathScene
 --- !u!1 &276486605
 GameObject:
   m_ObjectHideFlags: 0

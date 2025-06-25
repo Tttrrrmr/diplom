@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 299243113}
   - component: {fileID: 299243112}
   - component: {fileID: 299243111}
-  - component: {fileID: 299243114}
+  - component: {fileID: 299243115}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -374,7 +374,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299243109}
   m_CullTransparentMesh: 1
---- !u!114 &299243114
+--- !u!114 &299243115
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,10 +383,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 299243109}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e91d72d0db27f1845a8031c248934073, type: 3}
+  m_Script: {fileID: 11500000, guid: 73a9279800d9fab4e8305eda1a98d6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TechnologyScene: TechnologyBDTheoryScene
+  comp2Scene1: BdScene
 --- !u!1 &426676297
 GameObject:
   m_ObjectHideFlags: 0

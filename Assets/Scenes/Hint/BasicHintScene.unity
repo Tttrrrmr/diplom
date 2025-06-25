@@ -570,6 +570,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1580223433}
   - component: {fileID: 1580223432}
+  - component: {fileID: 1580223434}
   - component: {fileID: 1580223431}
   - component: {fileID: 1580223430}
   m_Layer: 5
@@ -665,6 +666,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1580223434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580223429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e192d862ea930a4c8539b4e80b6d227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeButton: {fileID: 1093119039}
+  returnSceneName: AccessGame
 --- !u!1 &1878484511
 GameObject:
   m_ObjectHideFlags: 0
